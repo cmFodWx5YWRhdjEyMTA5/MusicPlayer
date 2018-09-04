@@ -1,0 +1,29 @@
+package com.mngh1.gramophone.glide;
+
+import android.content.Context;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
+import com.bumptech.glide.module.GlideModule;
+import com.mngh1.gramophone.glide.artistimage.ArtistImage;
+import com.mngh1.gramophone.glide.artistimage.ArtistImageLoader;
+import com.mngh1.gramophone.glide.audiocover.AudioFileCover;
+import com.mngh1.gramophone.glide.audiocover.AudioFileCoverLoader;
+
+import java.io.InputStream;
+
+/**
+ * @author Karim Abou Zeid (mngh1)
+ */
+public class PhonographGlideModule implements GlideModule {
+    @Override
+    public void applyOptions(Context context, GlideBuilder builder) {
+
+    }
+
+    @Override
+    public void registerComponents(Context context, Glide glide) {
+        glide.register(AudioFileCover.class, InputStream.class, new AudioFileCoverLoader.Factory());
+        glide.register(ArtistImage.class, InputStream.class, new ArtistImageLoader.Factory(context));
+    }
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.kabouzeid.gramophone"
+<manifest package="com.mngh1.gramophone"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -140,7 +140,7 @@
             android:name="com.lge.support.SPLIT_WINDOW"
             android:value="true" />
         <meta-data
-            android:name="com.kabouzeid.gramophone.glide.PhonographGlideModule"
+            android:name="com.mngh1.gramophone.glide.PhonographGlideModule"
             android:value="GlideModule" />
         <meta-data
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
