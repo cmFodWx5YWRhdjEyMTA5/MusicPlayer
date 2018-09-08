@@ -2,6 +2,7 @@ package com.mngh1.musicAD.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +53,7 @@ import com.mngh1.musicAD.ui.activities.tageditor.AlbumTagEditorActivity;
 import com.mngh1.musicAD.util.MusicUtil;
 import com.mngh1.musicAD.util.NavigationUtil;
 import com.mngh1.musicAD.util.PhonographColorUtil;
+import com.mngh1.musicAD.util.PreferenceUtil;
 import com.mngh1.musicAD.util.Util;
 
 import java.util.ArrayList;
@@ -65,7 +68,7 @@ import retrofit2.Response;
 /**
  * Be careful when changing things in this Activity!
  */
-public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, LoaderManager.LoaderCallbacks<Album> {
+public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements SharedPreferences.OnSharedPreferenceChangeListener,PaletteColorHolder, CabHolder, LoaderManager.LoaderCallbacks<Album> {
 
     public static final String TAG = AlbumDetailActivity.class.getSimpleName();
     private static final int TAG_EDITOR_REQUEST = 2001;
@@ -102,6 +105,8 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     TextView songCountTextView;
     @BindView(R.id.album_year_text)
     TextView albumYearTextView;
+    @BindView(R.id.theme_album)
+    LinearLayout theme_album;
 
     private AlbumSongAdapter adapter;
 
@@ -125,8 +130,33 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setUpObservableListViewParams();
         setUpToolBar();
         setUpViews();
-
+        setUpBackground();
         getSupportLoaderManager().initLoader(LOADER_ID, getIntent().getExtras(), this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (PreferenceUtil.CHANGE_THEME.equals(s)){
+            setUpBackground();
+        }
+    }
+
+    private void setUpBackground() {
+        String bg = PreferenceUtil.getInstance(this).getChangeTheme();
+        switch (bg) {
+            case "them1":
+                theme_album.setBackgroundResource(R.drawable.landscape1);
+                break;
+            case "them2":
+                theme_album.setBackgroundResource(R.drawable.landscape2);
+                break;
+            case "them3":
+                theme_album.setBackgroundResource(R.drawable.landscape3);
+                break;
+            default:
+                theme_album.setBackgroundResource(R.drawable.landscape1);
+                break;
+        }
     }
 
     @Override

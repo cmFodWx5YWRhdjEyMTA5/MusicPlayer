@@ -21,6 +21,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public final class PreferenceUtil {
+    public static final String CHANGE_THEME = "change_theme";
     public static final String GENERAL_THEME = "general_theme";
     public static final String REMEMBER_LAST_TAB = "remember_last_tab";
     public static final String LAST_PAGE = "last_start_page";
@@ -115,7 +116,7 @@ public final class PreferenceUtil {
     public void setGeneralTheme(String theme) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(GENERAL_THEME, theme);
-        editor.commit();
+        editor.apply();
     }
 
     @StyleRes
@@ -474,6 +475,16 @@ public final class PreferenceUtil {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(LIBRARY_CATEGORIES, gson.toJson(categories, collectionType));
         editor.apply();
+    }
+
+    public void setChangeTheme(String theme){
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(CHANGE_THEME, theme);
+        editor.apply();
+    }
+
+    public String getChangeTheme(){
+        return mPreferences.getString(CHANGE_THEME, "theme1");
     }
 
     public ArrayList<CategoryInfo> getLibraryCategoryInfos() {

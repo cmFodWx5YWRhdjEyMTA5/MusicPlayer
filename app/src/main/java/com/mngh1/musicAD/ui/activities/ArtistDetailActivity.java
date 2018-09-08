@@ -2,6 +2,7 @@ package com.mngh1.musicAD.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +68,7 @@ import retrofit2.Response;
 /**
  * Be careful when changing things in this Activity!
  */
-public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, LoaderManager.LoaderCallbacks<Artist> {
+public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements SharedPreferences.OnSharedPreferenceChangeListener, PaletteColorHolder, CabHolder, LoaderManager.LoaderCallbacks<Artist> {
 
     public static final String TAG = ArtistDetailActivity.class.getSimpleName();
     private static final int LOADER_ID = LoaderIds.ARTIST_DETAIL_ACTIVITY;
@@ -84,6 +86,8 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     View headerView;
     @BindView(R.id.header_overlay)
     View headerOverlay;
+    @BindView(R.id.theme_artist)
+    LinearLayout theme_artist;
 
     @BindView(R.id.duration_icon)
     ImageView durationIconImageView;
@@ -144,8 +148,33 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         setUpObservableListViewParams();
         setUpToolbar();
         setUpViews();
-
+        setUpBackground();
         getSupportLoaderManager().initLoader(LOADER_ID, getIntent().getExtras(), this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (PreferenceUtil.CHANGE_THEME.equals(s)){
+            setUpBackground();
+        }
+    }
+
+    private void setUpBackground() {
+        String bg = PreferenceUtil.getInstance(this).getChangeTheme();
+        switch (bg) {
+            case "them1":
+                theme_artist.setBackgroundResource(R.drawable.landscape1);
+                break;
+            case "them2":
+                theme_artist.setBackgroundResource(R.drawable.landscape2);
+                break;
+            case "them3":
+                theme_artist.setBackgroundResource(R.drawable.landscape3);
+                break;
+            default:
+                theme_artist.setBackgroundResource(R.drawable.landscape1);
+                break;
+        }
     }
 
     @Override

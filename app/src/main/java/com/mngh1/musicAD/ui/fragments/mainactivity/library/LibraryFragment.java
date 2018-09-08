@@ -11,6 +11,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.afollestad.materialcab.MaterialCab;
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -61,9 +63,12 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     AppBarLayout appbar;
     @BindView(R.id.pager)
     ViewPager pager;
+    @BindView(R.id.theme_library)
+    LinearLayout theme_library;
 
     private MusicLibraryPagerAdapter pagerAdapter;
     private MaterialCab cab;
+//    private SharedPreferences sharedPreferences;
 
     public static LibraryFragment newInstance() {
         return new LibraryFragment();
@@ -93,9 +98,9 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         setStatusbarColorAuto(view);
         getMainActivity().setNavigationbarColorAuto();
         getMainActivity().setTaskDescriptionColorAuto();
-
         setUpToolbar();
         setUpViewPager();
+        setUpBackground();
     }
 
     @Override
@@ -108,10 +113,34 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             if (position < 0) position = 0;
             pager.setCurrentItem(position);
             PreferenceUtil.getInstance(getContext()).setLastPage(position);
-
+            setUpBackground();
             updateTabVisibility();
         }
+
+        if (PreferenceUtil.CHANGE_THEME.equals(key)){
+            setUpBackground();
+        }
     }
+
+    private void setUpBackground() {
+        String bg = PreferenceUtil.getInstance(getActivity()).getChangeTheme();
+        switch (bg) {
+            case "them1":
+                theme_library.setBackgroundResource(R.drawable.landscape1);
+                break;
+            case "them2":
+                theme_library.setBackgroundResource(R.drawable.landscape2);
+                break;
+            case "them3":
+                theme_library.setBackgroundResource(R.drawable.landscape3);
+                break;
+            default:
+                theme_library.setBackgroundResource(R.drawable.landscape1);
+                break;
+        }
+    }
+
+
 
     private void setUpToolbar() {
         int primaryColor = ThemeStore.primaryColor(getActivity());
@@ -137,13 +166,13 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         tabs.setSelectedTabIndicatorColor(ThemeStore.accentColor(getActivity()));
 
         updateTabVisibility();
-        
+
         if (PreferenceUtil.getInstance(getContext()).rememberLastTab()) {
             pager.setCurrentItem(PreferenceUtil.getInstance(getContext()).getLastPage());
         }
         pager.addOnPageChangeListener(this);
     }
-    
+
     private void updateTabVisibility() {
         // hide the tab bar when only a single tab is visible
         tabs.setVisibility(pagerAdapter.getCount() == 1 ? View.GONE : View.VISIBLE);

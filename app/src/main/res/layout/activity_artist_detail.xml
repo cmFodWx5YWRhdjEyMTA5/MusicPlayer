@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/theme_artist"
     android:orientation="vertical">
 
     <include layout="@layout/status_bar" />
@@ -36,6 +37,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:divider="@null"
+            android:background="@android:color/transparent"
             android:dividerHeight="0dp"
             android:scrollbars="none" />
 

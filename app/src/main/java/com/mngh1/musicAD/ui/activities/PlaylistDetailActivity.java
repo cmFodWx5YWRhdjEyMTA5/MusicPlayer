@@ -1,6 +1,7 @@
 package com.mngh1.musicAD.ui.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialcab.MaterialCab;
@@ -37,6 +39,7 @@ import com.mngh1.musicAD.model.Song;
 import com.mngh1.musicAD.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.mngh1.musicAD.util.PhonographColorUtil;
 import com.mngh1.musicAD.util.PlaylistsUtil;
+import com.mngh1.musicAD.util.PreferenceUtil;
 import com.mngh1.musicAD.util.ViewUtil;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
@@ -46,7 +49,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder, LoaderManager.LoaderCallbacks<ArrayList<Song>> {
+public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity implements SharedPreferences.OnSharedPreferenceChangeListener,CabHolder, LoaderManager.LoaderCallbacks<ArrayList<Song>> {
 
     public static final String TAG = PlaylistDetailActivity.class.getSimpleName();
 
@@ -61,6 +64,8 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
     Toolbar toolbar;
     @BindView(android.R.id.empty)
     TextView empty;
+    @BindView(R.id.theme_playlist)
+    FrameLayout theme_playlist;
 
     private Playlist playlist;
 
@@ -85,8 +90,33 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
         setUpRecyclerView();
 
         setUpToolbar();
-
+        setUpBackground();
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (PreferenceUtil.CHANGE_THEME.equals(s)){
+            setUpBackground();
+        }
+    }
+
+    private void setUpBackground() {
+        String bg = PreferenceUtil.getInstance(this).getChangeTheme();
+        switch (bg) {
+            case "them1":
+                theme_playlist.setBackgroundResource(R.drawable.landscape1);
+                break;
+            case "them2":
+                theme_playlist.setBackgroundResource(R.drawable.landscape2);
+                break;
+            case "them3":
+                theme_playlist.setBackgroundResource(R.drawable.landscape3);
+                break;
+            default:
+                theme_playlist.setBackgroundResource(R.drawable.landscape1);
+                break;
+        }
     }
 
     @Override
