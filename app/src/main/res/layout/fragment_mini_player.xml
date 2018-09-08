@@ -7,6 +7,7 @@
     android:background="?cardBackgroundColor"
     android:clickable="true"
     android:focusable="false"
+    android:id="@+id/mini_frame_layout"
     android:transitionName="@string/transition_mini_player"
     tools:ignore="UnusedAttribute">
 
@@ -15,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <com.mngh1.gramophone.views.IconImageView
+        <com.mngh1.musicAD.views.IconImageView
             android:id="@+id/mini_player_image"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -38,7 +39,7 @@
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
-        <com.mngh1.gramophone.views.IconImageView
+        <com.mngh1.musicAD.views.IconImageView
             android:id="@+id/mini_player_play_pause_button"
             android:layout_width="40dp"
             android:layout_height="40dp"

@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landscape1"
     android:orientation="vertical">
-
     <include layout="@layout/status_bar" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:elevation="@dimen/toolbar_elevation"
         tools:ignore="UnusedAttribute">
 
@@ -22,12 +23,14 @@
         <ViewStub
             android:id="@+id/cab_stub"
             android:layout_width="match_parent"
+            android:background="@android:color/transparent"
             android:layout_height="?attr/actionBarSize" />
 
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
+        android:background="@android:color/transparent"
         android:layout_height="match_parent">
 
         <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
@@ -35,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
+            android:background="@android:color/transparent"
             android:divider="@null"
             android:dividerHeight="0dp"
             android:scrollbars="none" />
@@ -42,13 +46,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/detail_header_height"
-                android:background="?attr/defaultFooterColor"
+                android:background="@android:color/transparent"
                 android:elevation="@dimen/toolbar_elevation"
                 android:orientation="horizontal"
                 tools:ignore="UnusedAttribute">
@@ -64,6 +69,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -73,6 +79,7 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingEnd="16dp"
+                        android:background="@android:color/transparent"
                         android:paddingLeft="0dp"
                         android:paddingRight="16dp"
                         android:paddingStart="0dp">
@@ -91,6 +98,7 @@
                         <TextView
                             android:ellipsize="end"
                             android:maxLines="@integer/detail_header_tile_maxLines"
+                            android:background="@android:color/transparent"
                             android:id="@+id/artist_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -102,6 +110,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@android:color/transparent"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingEnd="16dp"
@@ -122,6 +131,7 @@
 
                         <TextView
                             android:id="@+id/song_count_text"
+                            android:background="@android:color/transparent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
@@ -134,6 +144,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:background="@android:color/transparent"
                         android:paddingEnd="16dp"
                         android:paddingLeft="0dp"
                         android:paddingRight="16dp"
@@ -154,6 +165,7 @@
                             android:id="@+id/duration_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                     </LinearLayout>
@@ -163,6 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
+                        android:background="@android:color/transparent"
                         android:orientation="horizontal"
                         android:paddingEnd="16dp"
                         android:paddingLeft="0dp"
@@ -183,6 +196,7 @@
                         <TextView
                             android:id="@+id/album_year_text"
                             android:layout_width="wrap_content"
+                            android:background="@android:color/transparent"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -214,6 +228,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/detail_header_height"
             android:elevation="@dimen/toolbar_elevation"
+            android:background="@android:color/transparent"
             tools:ignore="UnusedAttribute" />
     </FrameLayout>
 

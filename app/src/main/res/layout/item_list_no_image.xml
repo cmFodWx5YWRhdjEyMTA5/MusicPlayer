@@ -7,7 +7,7 @@
     android:foreground="?attr/rectSelector"
     tools:ignore="UnusedAttribute">
 
-    <com.mngh1.gramophone.views.IconImageView
+    <com.mngh1.musicAD.views.IconImageView
         android:id="@+id/drag_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:singleLine="true"
+                android:textColor="@color/text_color_white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
             <TextView
@@ -52,10 +53,10 @@
                 android:fontFamily="sans-serif"
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="?android:textColorSecondary" />
+                android:textColor="@color/text_color_white" />
         </LinearLayout>
 
-        <com.mngh1.gramophone.views.IconImageView
+        <com.mngh1.musicAD.views.IconImageView
             android:id="@+id/menu"
             style="@style/OverFlowButton"
             android:layout_gravity="center_vertical"

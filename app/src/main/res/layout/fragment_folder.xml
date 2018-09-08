@@ -26,6 +26,7 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             tools:ignore="UnusedAttribute">
 
             <FrameLayout
@@ -48,7 +49,7 @@
 
             </FrameLayout>
 
-            <com.mngh1.gramophone.views.BreadCrumbLayout
+            <com.mngh1.musicAD.views.BreadCrumbLayout
                 android:id="@+id/bread_crumbs"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tab_height"

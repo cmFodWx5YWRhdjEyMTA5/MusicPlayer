@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/landscape1"
     tools:context=".ui.fragments.mainactivity.library.LibraryFragment">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
+        android:background="@android:color/transparent"
         tools:ignore="UnusedAttribute">
 
         <include layout="@layout/status_bar" />
@@ -19,22 +21,27 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
+        android:background="@android:color/transparent"
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
+            android:background="@android:color/transparent"
             android:layout_width="match_parent"
+            android:alpha="0.9"
             android:layout_height="wrap_content"
             tools:ignore="UnusedAttribute">
 
             <FrameLayout
                 android:layout_width="match_parent"
+                android:background="@null"
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways">
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     style="@style/Toolbar"
+                    android:background="@null"
                     android:elevation="0dp"
                     tools:ignore="UnusedAttribute">
 
@@ -43,12 +50,14 @@
                 <ViewStub
                     android:id="@+id/cab_stub"
                     android:layout_width="match_parent"
+                    android:background="@android:color/transparent"
                     android:layout_height="?attr/actionBarSize" />
 
             </FrameLayout>
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
+
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tab_height"
                 app:tabContentStart="72dp"
@@ -58,6 +67,7 @@
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
+            android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
