@@ -50,7 +50,7 @@
         android:layout_gravity="center"
         android:fontFamily="sans-serif-light"
         android:text="@string/playlist_empty_text"
-        android:textColor="?android:textColorSecondary"
+        android:textColor="@color/text_color_white"
         android:textSize="@dimen/empty_text_size"
         android:visibility="gone" />
 

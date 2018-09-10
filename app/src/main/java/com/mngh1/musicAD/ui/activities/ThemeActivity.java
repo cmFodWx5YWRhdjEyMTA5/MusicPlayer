@@ -22,7 +22,7 @@ import com.mngh1.musicAD.util.PreferenceUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ThemeActivity extends AbsBaseActivity {
+public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -44,10 +44,9 @@ public class ThemeActivity extends AbsBaseActivity {
         ButterKnife.bind(this);
         setDrawUnderStatusbar(true);
         setStatusbarColorAuto();
-//        setNavigationbarColorAuto();
-//        setTaskDescriptionColorAuto();
         setUpToolbar();
-//        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        setUpBackground();
+
         theme1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +71,31 @@ public class ThemeActivity extends AbsBaseActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (PreferenceUtil.CHANGE_THEME.equals(s)){
+            setUpBackground();
+        }
+    }
+
+    private void setUpBackground() {
+        String bg = PreferenceUtil.getInstance(this).getChangeTheme();
+        switch (bg) {
+            case "them1":
+                theme.setBackgroundResource(R.drawable.landscape1);
+                break;
+            case "them2":
+                theme.setBackgroundResource(R.drawable.landscape2);
+                break;
+            case "them3":
+                theme.setBackgroundResource(R.drawable.landscape3);
+                break;
+            default:
+                theme.setBackgroundResource(R.drawable.landscape1);
+                break;
+        }
     }
 
     private void setUpToolbar() {

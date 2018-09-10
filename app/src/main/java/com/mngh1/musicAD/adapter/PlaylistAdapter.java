@@ -236,7 +236,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
             if (image != null) {
                 int iconPadding = activity.getResources().getDimensionPixelSize(R.dimen.list_item_image_icon_padding);
                 image.setPadding(iconPadding, iconPadding, iconPadding, iconPadding);
-                image.setColorFilter(ATHUtil.resolveColor(activity, R.attr.iconColor), PorterDuff.Mode.SRC_IN);
+//                image.setColorFilter(R.color.text_color_white, PorterDuff.Mode.SRC_IN);
             }
 
             if (menu != null) {

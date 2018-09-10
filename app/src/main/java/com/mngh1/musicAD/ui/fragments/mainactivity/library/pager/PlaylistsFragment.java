@@ -80,9 +80,9 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
         private static ArrayList<Playlist> getAllPlaylists(Context context) {
             ArrayList<Playlist> playlists = new ArrayList<>();
 
-            playlists.add(new LastAddedPlaylist(context));
-            playlists.add(new HistoryPlaylist(context));
-            playlists.add(new MyTopTracksPlaylist(context));
+//            playlists.add(new LastAddedPlaylist(context));
+//            playlists.add(new HistoryPlaylist(context));
+//            playlists.add(new MyTopTracksPlaylist(context));
 
             playlists.addAll(PlaylistLoader.getAllPlaylists(context));
 

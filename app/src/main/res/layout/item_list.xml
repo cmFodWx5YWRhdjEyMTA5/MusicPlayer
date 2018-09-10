@@ -49,6 +49,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
+                android:textColor="@color/text_color_white"
                 android:minHeight="40dp"
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"

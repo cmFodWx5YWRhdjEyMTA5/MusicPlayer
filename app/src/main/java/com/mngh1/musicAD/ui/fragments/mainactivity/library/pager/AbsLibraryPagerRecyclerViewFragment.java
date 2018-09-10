@@ -114,6 +114,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
     private void checkIsEmpty() {
         if (empty != null) {
             empty.setText(getEmptyMessage());
+            empty.setTextColor(getResources().getColor(R.color.text_color_white));
             empty.setVisibility(adapter == null || adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
         }
     }

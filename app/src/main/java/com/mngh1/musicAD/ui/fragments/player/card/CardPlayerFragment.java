@@ -3,6 +3,7 @@ package com.mngh1.musicAD.ui.fragments.player.card;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -26,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
@@ -49,6 +51,7 @@ import com.mngh1.musicAD.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.mngh1.musicAD.ui.fragments.player.AbsPlayerFragment;
 import com.mngh1.musicAD.ui.fragments.player.PlayerAlbumCoverFragment;
 import com.mngh1.musicAD.util.MusicUtil;
+import com.mngh1.musicAD.util.PreferenceUtil;
 import com.mngh1.musicAD.util.Util;
 import com.mngh1.musicAD.util.ViewUtil;
 import com.mngh1.musicAD.views.WidthFitSquareLayout;
@@ -58,7 +61,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbumCoverFragment.Callbacks, SlidingUpPanelLayout.PanelSlideListener {
+public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbumCoverFragment.Callbacks, SlidingUpPanelLayout.PanelSlideListener,
+        SharedPreferences.OnSharedPreferenceChangeListener{
     public static final String TAG = CardPlayerFragment.class.getSimpleName();
 
     private Unbinder unbinder;
@@ -78,6 +82,8 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     View colorBackground;
     @BindView(R.id.player_queue_sub_header)
     TextView playerQueueSubHeader;
+    @BindView(R.id.card_content)
+    LinearLayout card_content;
 
     private int lastColor;
 
@@ -114,6 +120,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        PreferenceUtil.getInstance(getActivity()).registerOnSharedPreferenceChangedListener(this);
 
         impl.init();
 
@@ -139,6 +146,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @Override
     public void onDestroyView() {
+        PreferenceUtil.getInstance(getActivity()).unregisterOnSharedPreferenceChangedListener(this);
         if (slidingUpPanelLayout != null) {
             slidingUpPanelLayout.removePanelSlideListener(this);
         }
@@ -267,10 +275,35 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(wrappedAdapter);
         recyclerView.setItemAnimator(animator);
-
+        setUpBackground();
         recyclerViewDragDropManager.attachRecyclerView(recyclerView);
 
         layoutManager.scrollToPositionWithOffset(MusicPlayerRemote.getPosition() + 1, 0);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (PreferenceUtil.CHANGE_THEME.equals(s)){
+            setUpBackground();
+        }
+    }
+
+    private void setUpBackground() {
+        String bg = PreferenceUtil.getInstance(getActivity()).getChangeTheme();
+        switch (bg) {
+            case "them1":
+                card_content.setBackgroundResource(R.drawable.landscape1);
+                break;
+            case "them2":
+                card_content.setBackgroundResource(R.drawable.landscape2);
+                break;
+            case "them3":
+                card_content.setBackgroundResource(R.drawable.landscape3);
+                break;
+            default:
+                card_content.setBackgroundResource(R.drawable.landscape1);
+                break;
+        }
     }
 
     private void updateIsFavorite() {
@@ -514,7 +547,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             currentSongViewHolder.separator.setVisibility(View.VISIBLE);
             currentSongViewHolder.shortSeparator.setVisibility(View.GONE);
             currentSongViewHolder.image.setScaleType(ImageView.ScaleType.CENTER);
-            currentSongViewHolder.image.setColorFilter(ATHUtil.resolveColor(fragment.getActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(fragment.getActivity())), PorterDuff.Mode.SRC_IN);
+//            currentSongViewHolder.image.setColorFilter(R.color.text_color_white, PorterDuff.Mode.SRC_IN);
             currentSongViewHolder.image.setImageResource(R.drawable.ic_volume_up_white_24dp);
             currentSongViewHolder.itemView.setOnClickListener(v -> {
                 // toggle the panel

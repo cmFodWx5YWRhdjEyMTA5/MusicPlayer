@@ -90,7 +90,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
         setUpRecyclerView();
 
         setUpToolbar();
-        setUpBackground();
+
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
@@ -155,6 +155,8 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
                 checkIsEmpty();
             }
         });
+
+        setUpBackground();
     }
 
     private void setUpToolbar() {

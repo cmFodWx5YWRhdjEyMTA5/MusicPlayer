@@ -44,6 +44,8 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
     MaterialProgressBar progressBar;
     @BindView(R.id.mini_frame_layout)
     FrameLayout frameLayout;
+    @BindView(R.id.mini_player_image)
+    ImageView mini_player_image;
 
     private PlayPauseDrawable miniPlayerPlayPauseDrawable;
 
@@ -79,6 +81,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
 
     private void setUpMiniPlayer() {
         setUpPlayPauseButton();
+        mini_player_image.setColorFilter(ATHUtil.resolveColor(getActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(getActivity())), PorterDuff.Mode.SRC_IN);
         progressBar.setProgressTintList(ColorStateList.valueOf(ThemeStore.accentColor(getActivity())));
 
     }

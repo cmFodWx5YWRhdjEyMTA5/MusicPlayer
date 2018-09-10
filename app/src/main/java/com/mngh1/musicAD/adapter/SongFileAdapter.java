@@ -112,7 +112,7 @@ public class SongFileAdapter extends AbsMultiSelectAdapter<SongFileAdapter.ViewH
     protected void loadFileImage(File file, final ViewHolder holder) {
         final int iconColor = ATHUtil.resolveColor(activity, R.attr.iconColor);
         if (file.isDirectory()) {
-            holder.image.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN);
+//            holder.image.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN);
             holder.image.setImageResource(R.drawable.ic_folder_white_24dp);
         } else {
             Drawable error = Util.getTintedVectorDrawable(activity, R.drawable.ic_file_music_white_24dp, iconColor);

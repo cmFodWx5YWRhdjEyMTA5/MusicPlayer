@@ -3,6 +3,7 @@ package com.mngh1.musicAD.ui.fragments.mainactivity.folders;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialcab.MaterialCab;
@@ -65,7 +67,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class FoldersFragment extends AbsMainActivityFragment implements MainActivity.MainActivityFragmentCallbacks, CabHolder, BreadCrumbLayout.SelectionCallback, SongFileAdapter.Callbacks, AppBarLayout.OnOffsetChangedListener, LoaderManager.LoaderCallbacks<List<File>> {
+public class FoldersFragment extends AbsMainActivityFragment implements SharedPreferences.OnSharedPreferenceChangeListener, MainActivity.MainActivityFragmentCallbacks, CabHolder, BreadCrumbLayout.SelectionCallback, SongFileAdapter.Callbacks, AppBarLayout.OnOffsetChangedListener, LoaderManager.LoaderCallbacks<List<File>> {
     public static final String TAG = FoldersFragment.class.getSimpleName();
 
     private static final int LOADER_ID = LoaderIds.FOLDERS_FRAGMENT;
@@ -80,7 +82,7 @@ public class FoldersFragment extends AbsMainActivityFragment implements MainActi
     @BindView(R.id.container)
     View container;
     @BindView(android.R.id.empty)
-    View empty;
+    TextView empty;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.bread_crumbs)
@@ -106,6 +108,31 @@ public class FoldersFragment extends AbsMainActivityFragment implements MainActi
         b.putSerializable(PATH, directory);
         frag.setArguments(b);
         return frag;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (PreferenceUtil.CHANGE_THEME.equals(s)){
+            setUpBackground();
+        }
+    }
+
+    private void setUpBackground() {
+        String bg = PreferenceUtil.getInstance(getMainActivity()).getChangeTheme();
+        switch (bg) {
+            case "them1":
+                recyclerView.setBackgroundResource(R.drawable.landscape1);
+                break;
+            case "them2":
+                recyclerView.setBackgroundResource(R.drawable.landscape2);
+                break;
+            case "them3":
+                recyclerView.setBackgroundResource(R.drawable.landscape3);
+                break;
+            default:
+                recyclerView.setBackgroundResource(R.drawable.landscape1);
+                break;
+        }
     }
 
     public void setCrumb(BreadCrumbLayout.Crumb crumb, boolean addToHistory) {
@@ -156,6 +183,7 @@ public class FoldersFragment extends AbsMainActivityFragment implements MainActi
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        PreferenceUtil.getInstance(getActivity()).registerOnSharedPreferenceChangedListener(this);
         setStatusbarColorAuto(view);
         getMainActivity().setNavigationbarColorAuto();
         getMainActivity().setTaskDescriptionColorAuto();
@@ -165,6 +193,7 @@ public class FoldersFragment extends AbsMainActivityFragment implements MainActi
         setUpBreadCrumbs();
         setUpRecyclerView();
         setUpAdapter();
+        setUpBackground();
     }
 
     private void setUpAppbarColor() {
@@ -215,6 +244,7 @@ public class FoldersFragment extends AbsMainActivityFragment implements MainActi
 
     @Override
     public void onDestroyView() {
+        PreferenceUtil.getInstance(getActivity()).unregisterOnSharedPreferenceChangedListener(this);
         appbar.removeOnOffsetChangedListener(this);
         unbinder.unbind();
         super.onDestroyView();
