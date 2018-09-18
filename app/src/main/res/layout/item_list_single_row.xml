@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="64dp"
+    android:background="@android:color/transparent"
     android:foreground="?attr/rectSelector"
     tools:ignore="UnusedAttribute">
 
@@ -21,6 +22,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:descendantFocusability="blocksDescendants"
         android:orientation="horizontal">
 
@@ -29,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingEnd="0dp"
+            android:background="@android:color/transparent"
             android:paddingLeft="16dp"
             android:paddingRight="0dp"
             android:paddingStart="16dp">
@@ -83,7 +86,7 @@
         android:layout_height="1dp"
         android:layout_gravity="bottom"
         android:background="?attr/dividerColor"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <View
         android:id="@+id/short_separator"

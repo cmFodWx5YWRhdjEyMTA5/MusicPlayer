@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -79,6 +80,8 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false);
+//        view.setBackgroundColor(ContextCompat.getColor(activity.getApplicationContext(),R.color.md_amber_700));
+//        view.setBackgroundResource(R.drawable.landscape2);
         return createViewHolder(view, viewType);
     }
 
@@ -227,7 +230,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                 if (shortSeparator != null) {
                     shortSeparator.setVisibility(View.GONE);
                 }
-                itemView.setBackgroundColor(ATHUtil.resolveColor(activity, R.attr.cardBackgroundColor));
+//                itemView.setBackgroundColor(ATHUtil.resolveColor(activity, R.attr.cardBackgroundColor));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     itemView.setElevation(activity.getResources().getDimensionPixelSize(R.dimen.card_elevation));
                 }

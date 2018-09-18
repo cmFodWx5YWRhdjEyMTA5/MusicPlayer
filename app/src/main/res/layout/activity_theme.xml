@@ -26,10 +26,9 @@
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/theme1"
-
                 android:layout_width="200dp"
                 android:layout_marginLeft="60dp"
-                android:src="@drawable/landscape1"
+                android:src="@drawable/bg1"
                 android:layout_marginRight="30dp"
                 app:layout_gravity="center"
                 android:layout_height="350dp" />
@@ -37,20 +36,40 @@
             <ImageView
                 android:id="@+id/theme2"
                 android:layout_width="200dp"
-
                 app:layout_gravity="center"
                 android:adjustViewBounds="true"
-                android:src="@drawable/landscape2"
+                android:src="@drawable/bg2"
                 android:layout_marginRight="30dp"
                 android:layout_height="350dp" />
 
             <ImageView
                 android:id="@+id/theme3"
                 android:layout_width="200dp"
-
                 android:adjustViewBounds="true"
-                android:src="@drawable/landscape3"
+                android:src="@drawable/bg3"
+                android:layout_marginRight="30dp"
+                app:layout_gravity="center"
                 android:layout_height="350dp" />
+
+            <ImageView
+                android:id="@+id/theme4"
+                android:layout_width="200dp"
+                android:layout_marginRight="30dp"
+                app:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg4"
+                android:layout_height="350dp" />
+
+            <ImageView
+                android:id="@+id/theme5"
+                android:layout_width="200dp"
+                android:layout_marginRight="60dp"
+                app:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg5"
+                android:layout_height="350dp" />
+
+
         </LinearLayout>
     </HorizontalScrollView>
 

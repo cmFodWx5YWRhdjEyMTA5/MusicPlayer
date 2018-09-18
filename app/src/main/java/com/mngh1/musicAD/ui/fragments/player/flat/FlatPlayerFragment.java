@@ -123,16 +123,22 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements SharedPrefe
         String bg = PreferenceUtil.getInstance(getActivity()).getChangeTheme();
         switch (bg) {
             case "them1":
-                player_panel_content.setBackgroundResource(R.drawable.landscape1);
+                player_panel_content.setBackgroundResource(R.drawable.bg1);
                 break;
             case "them2":
-                player_panel_content.setBackgroundResource(R.drawable.landscape2);
+                player_panel_content.setBackgroundResource(R.drawable.bg2);
                 break;
             case "them3":
-                player_panel_content.setBackgroundResource(R.drawable.landscape3);
+                player_panel_content.setBackgroundResource(R.drawable.bg3);
+                break;
+            case "them4":
+                player_panel_content.setBackgroundResource(R.drawable.bg4);
+                break;
+            case "them5":
+                player_panel_content.setBackgroundResource(R.drawable.bg5);
                 break;
             default:
-                player_panel_content.setBackgroundResource(R.drawable.landscape1);
+                player_panel_content.setBackgroundResource(R.drawable.bg1);
                 break;
         }
     }

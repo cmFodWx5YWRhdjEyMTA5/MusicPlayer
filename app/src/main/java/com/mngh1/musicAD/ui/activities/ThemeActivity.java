@@ -34,6 +34,11 @@ public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.
     ImageView theme2;
     @BindView(R.id.theme3)
     ImageView theme3;
+    @BindView(R.id.theme4)
+    ImageView theme4;
+    @BindView(R.id.theme5)
+    ImageView theme5;
+
 
 //    private SharedPreferences sp ;
 
@@ -50,7 +55,7 @@ public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.
         theme1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                theme.setBackgroundResource(R.drawable.landscape1);
+                theme.setBackgroundResource(R.drawable.bg1);
                 PreferenceUtil.getInstance(getParent()).setChangeTheme("them1");
             }
         });
@@ -58,7 +63,7 @@ public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.
         theme2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                theme.setBackgroundResource(R.drawable.landscape2);
+                theme.setBackgroundResource(R.drawable.bg2);
                 PreferenceUtil.getInstance(getParent()).setChangeTheme("them2");
             }
         });
@@ -66,10 +71,29 @@ public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.
         theme3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                theme.setBackgroundResource(R.drawable.landscape3);
+                theme.setBackgroundResource(R.drawable.bg3);
                 PreferenceUtil.getInstance(getParent()).setChangeTheme("them3");
             }
         });
+
+        theme4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                theme.setBackgroundResource(R.drawable.bg4);
+                PreferenceUtil.getInstance(getParent()).setChangeTheme("them4");
+            }
+        });
+
+        theme5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                theme.setBackgroundResource(R.drawable.bg5);
+                PreferenceUtil.getInstance(getParent()).setChangeTheme("them5");
+            }
+        });
+
+
+
 
     }
 
@@ -84,16 +108,22 @@ public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.
         String bg = PreferenceUtil.getInstance(this).getChangeTheme();
         switch (bg) {
             case "them1":
-                theme.setBackgroundResource(R.drawable.landscape1);
+                theme.setBackgroundResource(R.drawable.bg1);
                 break;
             case "them2":
-                theme.setBackgroundResource(R.drawable.landscape2);
+                theme.setBackgroundResource(R.drawable.bg2);
                 break;
             case "them3":
-                theme.setBackgroundResource(R.drawable.landscape3);
+                theme.setBackgroundResource(R.drawable.bg3);
+                break;
+            case "them4":
+                theme.setBackgroundResource(R.drawable.bg4);
+                break;
+            case "them5":
+                theme.setBackgroundResource(R.drawable.bg5);
                 break;
             default:
-                theme.setBackgroundResource(R.drawable.landscape1);
+                theme.setBackgroundResource(R.drawable.bg1);
                 break;
         }
     }

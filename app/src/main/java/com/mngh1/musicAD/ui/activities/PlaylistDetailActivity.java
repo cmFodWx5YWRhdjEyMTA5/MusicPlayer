@@ -105,16 +105,22 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
         String bg = PreferenceUtil.getInstance(this).getChangeTheme();
         switch (bg) {
             case "them1":
-                theme_playlist.setBackgroundResource(R.drawable.landscape1);
+                theme_playlist.setBackgroundResource(R.drawable.bg1);
                 break;
             case "them2":
-                theme_playlist.setBackgroundResource(R.drawable.landscape2);
+                theme_playlist.setBackgroundResource(R.drawable.bg2);
                 break;
             case "them3":
-                theme_playlist.setBackgroundResource(R.drawable.landscape3);
+                theme_playlist.setBackgroundResource(R.drawable.bg3);
+                break;
+            case "them4":
+                theme_playlist.setBackgroundResource(R.drawable.bg4);
+                break;
+            case "them5":
+                theme_playlist.setBackgroundResource(R.drawable.bg5);
                 break;
             default:
-                theme_playlist.setBackgroundResource(R.drawable.landscape1);
+                theme_playlist.setBackgroundResource(R.drawable.bg1);
                 break;
         }
     }

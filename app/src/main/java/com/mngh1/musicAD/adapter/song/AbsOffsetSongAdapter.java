@@ -1,8 +1,12 @@
 package com.mngh1.musicAD.adapter.song;
 
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,8 +40,11 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
     public SongAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == OFFSET_ITEM) {
             View view = LayoutInflater.from(activity).inflate(R.layout.item_list_single_row, parent, false);
+//            view.setBackgroundColor(ContextCompat.getColor(activity.getApplicationContext(),R.color.md_amber_700));
             return createViewHolder(view);
         }
+//        parent.setBackgroundColor(ContextCompat.getColor(activity.getApplicationContext(),R.color.md_amber_700));
+
         return super.onCreateViewHolder(parent, viewType);
     }
 

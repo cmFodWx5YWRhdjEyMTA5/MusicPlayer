@@ -292,16 +292,22 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         String bg = PreferenceUtil.getInstance(getActivity()).getChangeTheme();
         switch (bg) {
             case "them1":
-                card_content.setBackgroundResource(R.drawable.landscape1);
+                card_content.setBackgroundResource(R.drawable.bg1);
                 break;
             case "them2":
-                card_content.setBackgroundResource(R.drawable.landscape2);
+                card_content.setBackgroundResource(R.drawable.bg2);
                 break;
             case "them3":
-                card_content.setBackgroundResource(R.drawable.landscape3);
+                card_content.setBackgroundResource(R.drawable.bg3);
+                break;
+            case "them4":
+                card_content.setBackgroundResource(R.drawable.bg4);
+                break;
+            case "them5":
+                card_content.setBackgroundResource(R.drawable.bg5);
                 break;
             default:
-                card_content.setBackgroundResource(R.drawable.landscape1);
+                card_content.setBackgroundResource(R.drawable.bg1);
                 break;
         }
     }

@@ -16,6 +16,7 @@ import com.mngh1.musicAD.model.Playlist;
 import com.mngh1.musicAD.model.smartplaylist.HistoryPlaylist;
 import com.mngh1.musicAD.model.smartplaylist.LastAddedPlaylist;
 import com.mngh1.musicAD.model.smartplaylist.MyTopTracksPlaylist;
+import com.mngh1.musicAD.model.smartplaylist.ShuffleAllPlaylist;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
     @NonNull
     @Override
     protected PlaylistAdapter createAdapter() {
-        ArrayList<Playlist> dataSet = getAdapter() == null ? new ArrayList<Playlist>() : getAdapter().getDataSet();
+        ArrayList<Playlist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
         return new PlaylistAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_single_row, getLibraryFragment());
     }
 
@@ -57,23 +58,24 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
         getLoaderManager().restartLoader(LOADER_ID, null, this);
     }
 
+    @NonNull
     @Override
     public Loader<ArrayList<Playlist>> onCreateLoader(int id, Bundle args) {
         return new AsyncPlaylistLoader(getActivity());
     }
 
     @Override
-    public void onLoadFinished(Loader<ArrayList<Playlist>> loader, ArrayList<Playlist> data) {
+    public void onLoadFinished(@NonNull Loader<ArrayList<Playlist>> loader, ArrayList<Playlist> data) {
         getAdapter().swapDataSet(data);
     }
 
     @Override
-    public void onLoaderReset(Loader<ArrayList<Playlist>> loader) {
-        getAdapter().swapDataSet(new ArrayList<Playlist>());
+    public void onLoaderReset(@NonNull Loader<ArrayList<Playlist>> loader) {
+        getAdapter().swapDataSet(new ArrayList<>());
     }
 
     private static class AsyncPlaylistLoader extends WrappedAsyncTaskLoader<ArrayList<Playlist>> {
-        public AsyncPlaylistLoader(Context context) {
+        private AsyncPlaylistLoader(Context context) {
             super(context);
         }
 
@@ -83,6 +85,7 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
             playlists.add(new LastAddedPlaylist(context));
             playlists.add(new HistoryPlaylist(context));
             playlists.add(new MyTopTracksPlaylist(context));
+//            playlists.add(new ShuffleAllPlaylist(context));
 
             playlists.addAll(PlaylistLoader.getAllPlaylists(context));
 

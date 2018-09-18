@@ -121,16 +121,22 @@ public class FoldersFragment extends AbsMainActivityFragment implements SharedPr
         String bg = PreferenceUtil.getInstance(getMainActivity()).getChangeTheme();
         switch (bg) {
             case "them1":
-                recyclerView.setBackgroundResource(R.drawable.landscape1);
+                recyclerView.setBackgroundResource(R.drawable.bg1);
                 break;
             case "them2":
-                recyclerView.setBackgroundResource(R.drawable.landscape2);
+                recyclerView.setBackgroundResource(R.drawable.bg2);
                 break;
             case "them3":
-                recyclerView.setBackgroundResource(R.drawable.landscape3);
+                recyclerView.setBackgroundResource(R.drawable.bg3);
+                break;
+            case "them4":
+                recyclerView.setBackgroundResource(R.drawable.bg4);
+                break;
+            case "them5":
+                recyclerView.setBackgroundResource(R.drawable.bg5);
                 break;
             default:
-                recyclerView.setBackgroundResource(R.drawable.landscape1);
+                recyclerView.setBackgroundResource(R.drawable.bg1);
                 break;
         }
     }
