@@ -63,52 +63,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     Toolbar toolbar;
     @BindView(R.id.app_version)
     TextView appVersion;
-    @BindView(R.id.changelog)
-    LinearLayout changelog;
-    @BindView(R.id.intro)
-    LinearLayout intro;
-    @BindView(R.id.licenses)
-    LinearLayout licenses;
-//    @BindView(R.id.write_an_email)
-//    LinearLayout writeAnEmail;
-//    @BindView(R.id.add_to_google_plus_circles)
-//    LinearLayout addToGooglePlusCircles;
-//    @BindView(R.id.follow_on_twitter)
-//    LinearLayout followOnTwitter;
-//    @BindView(R.id.fork_on_github)
-//    LinearLayout forkOnGitHub;
-//    @BindView(R.id.visit_website)
-//    LinearLayout visitWebsite;
-//    @BindView(R.id.report_bugs)
-//    LinearLayout reportBugs;
-//    @BindView(R.id.join_google_plus_community)
-//    LinearLayout joinGooglePlusCommunity;
-//    @BindView(R.id.translate)
-//    LinearLayout translate;
-//    @BindView(R.id.donate)
-//    LinearLayout donate;
-//    @BindView(R.id.rate_on_google_play)
-//    LinearLayout rateOnGooglePlay;
-//    @BindView(R.id.aidan_follestad_google_plus)
-//    AppCompatButton aidanFollestadGooglePlus;
-//    @BindView(R.id.aidan_follestad_git_hub)
-//    AppCompatButton aidanFollestadGitHub;
-//    @BindView(R.id.michael_cook_google_plus)
-//    AppCompatButton michaelCookGooglePlus;
-//    @BindView(R.id.michael_cook_website)
-//    AppCompatButton michaelCookWebsite;
-//    @BindView(R.id.maarten_corpel_google_plus)
-//    AppCompatButton maartenCorpelGooglePlus;
-//    @BindView(R.id.aleksandar_tesic_google_plus)
-//    AppCompatButton aleksandarTesicGooglePlus;
-//    @BindView(R.id.eugene_cheung_git_hub)
-//    AppCompatButton eugeneCheungGitHub;
-//    @BindView(R.id.eugene_cheung_website)
-//    AppCompatButton eugeneCheungWebsite;
-//    @BindView(R.id.adrian_twitter)
-//    AppCompatButton adrianTwitter;
-//    @BindView(R.id.adrian_website)
-//    AppCompatButton adrianWebsite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,29 +96,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpOnClickListeners() {
-        changelog.setOnClickListener(this);
-        intro.setOnClickListener(this);
-        licenses.setOnClickListener(this);
-//        addToGooglePlusCircles.setOnClickListener(this);
-//        followOnTwitter.setOnClickListener(this);
-//        forkOnGitHub.setOnClickListener(this);
-//        visitWebsite.setOnClickListener(this);
-//        reportBugs.setOnClickListener(this);
-//        writeAnEmail.setOnClickListener(this);
-//        joinGooglePlusCommunity.setOnClickListener(this);
-//        translate.setOnClickListener(this);
-//        rateOnGooglePlay.setOnClickListener(this);
-//        donate.setOnClickListener(this);
-//        aidanFollestadGooglePlus.setOnClickListener(this);
-//        aidanFollestadGitHub.setOnClickListener(this);
-//        michaelCookGooglePlus.setOnClickListener(this);
-//        michaelCookWebsite.setOnClickListener(this);
-//        maartenCorpelGooglePlus.setOnClickListener(this);
-//        aleksandarTesicGooglePlus.setOnClickListener(this);
-//        eugeneCheungGitHub.setOnClickListener(this);
-//        eugeneCheungWebsite.setOnClickListener(this);
-//        adrianTwitter.setOnClickListener(this);
-//        adrianWebsite.setOnClickListener(this);
     }
 
     @Override
@@ -178,8 +109,8 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
 
     private static String getCurrentVersionName(@NonNull final Context context) {
         try {
-            return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName + (App.isProVersion() ? " Pro" : "");
-        } catch (PackageManager.NameNotFoundException e) {
+            return "1.0";
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "Unkown";
@@ -187,62 +118,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v == changelog) {
-            ChangelogDialog.create().show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
-        } else if (v == licenses) {
-            showLicenseDialog();
-        } else if (v == intro) {
-            startActivity(new Intent(this, AppIntroActivity.class));
-        }
-//        else if (v == addToGooglePlusCircles) {
-//            openUrl(GOOGLE_PLUS);
-//        } else if (v == followOnTwitter) {
-//            openUrl(TWITTER);
-//        } else if (v == forkOnGitHub) {
-//            openUrl(GITHUB);
-//        } else if (v == visitWebsite) {
-//            openUrl(WEBSITE);
-//        } else if (v == reportBugs) {
-//            startActivity(new Intent(this, BugReportActivity.class));
-//        } else if (v == writeAnEmail) {
-//            Intent intent = new Intent(Intent.ACTION_SENDTO);
-//            intent.setData(Uri.parse("mailto:contact@mngh1.com"));
-//            intent.putExtra(Intent.EXTRA_EMAIL, "contact@mngh1.com");
-//            intent.putExtra(Intent.EXTRA_SUBJECT, "Phonograph");
-//            startActivity(Intent.createChooser(intent, "E-Mail"));
-//        } else if (v == joinGooglePlusCommunity) {
-//            openUrl(GOOGLE_PLUS_COMMUNITY);
-//        } else if (v == translate) {
-//            openUrl(TRANSLATE);
-//        } else if (v == rateOnGooglePlay) {
-//            openUrl(RATE_ON_GOOGLE_PLAY);
-//        } else if (v == donate) {
-//            if (App.isProVersion()) {
-//                DonationsDialog.create().show(getSupportFragmentManager(), "DONATION_DIALOG");
-//            } else {
-//                startActivity(new Intent(this, PurchaseActivity.class));
-//            }
-//        } else if (v == aidanFollestadGooglePlus) {
-//            openUrl(AIDAN_FOLLESTAD_GOOGLE_PLUS);
-//        } else if (v == aidanFollestadGitHub) {
-//            openUrl(AIDAN_FOLLESTAD_GITHUB);
-//        } else if (v == michaelCookGooglePlus) {
-//            openUrl(MICHAEL_COOK_GOOGLE_PLUS);
-//        } else if (v == michaelCookWebsite) {
-//            openUrl(MICHAEL_COOK_WEBSITE);
-//        } else if (v == maartenCorpelGooglePlus) {
-//            openUrl(MAARTEN_CORPEL_GOOGLE_PLUS);
-//        } else if (v == aleksandarTesicGooglePlus) {
-//            openUrl(ALEKSANDAR_TESIC_GOOGLE_PLUS);
-//        } else if (v == eugeneCheungGitHub) {
-//            openUrl(EUGENE_CHEUNG_GITHUB);
-//        } else if (v == eugeneCheungWebsite) {
-//            openUrl(EUGENE_CHEUNG_WEBSITE);
-//        } else if (v == adrianTwitter) {
-//            openUrl(ADRIAN_TWITTER);
-//        } else if (v == adrianWebsite) {
-//            openUrl(ADRIAN_WEBSITE);
-//        }
     }
 
     private void openUrl(String url) {

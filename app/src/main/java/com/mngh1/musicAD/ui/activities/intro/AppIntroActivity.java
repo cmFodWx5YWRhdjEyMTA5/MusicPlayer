@@ -24,7 +24,7 @@ public class AppIntroActivity extends IntroActivity {
         addSlide(new SimpleSlide.Builder()
                 .title(R.string.app_name)
                 .description(R.string.welcome_to_phonograph)
-                .image(R.drawable.icon_web)
+                .image(R.mipmap.ic_launcher1)
                 .background(R.color.md_blue_grey_100)
                 .backgroundDark(R.color.md_blue_grey_200)
                 .layout(R.layout.fragment_simple_slide_large_image)

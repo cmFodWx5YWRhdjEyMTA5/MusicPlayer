@@ -153,7 +153,7 @@ public class PurchaseActivity extends AbsBaseActivity implements BillingProcesso
         protected Boolean doInBackground(Void... params) {
             PurchaseActivity purchaseActivity = buyActivityWeakReference.get();
             if (purchaseActivity != null) {
-                return purchaseActivity.billingProcessor.loadOwnedPurchasesFromGoogle();
+//                return purchaseActivity.billingProcessor.loadOwnedPurchasesFromGoogle();
             }
             cancel(false);
             return null;
