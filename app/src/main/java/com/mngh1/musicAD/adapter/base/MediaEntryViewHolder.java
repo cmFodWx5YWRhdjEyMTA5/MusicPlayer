@@ -12,6 +12,7 @@ import com.mngh1.musicAD.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.claucookie.miniequalizerlibrary.EqualizerView;
 
 /**
  * @author Karim Abou Zeid (mngh1)
@@ -36,6 +37,10 @@ public class MediaEntryViewHolder extends RecyclerView.ViewHolder implements Vie
     @Nullable
     @BindView(R.id.menu)
     public View menu;
+
+    @Nullable
+    @BindView(R.id.equalizer_view)
+    public EqualizerView equalizer_view;
 
     @Nullable
     @BindView(R.id.separator)

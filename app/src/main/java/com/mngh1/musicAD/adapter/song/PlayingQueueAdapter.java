@@ -1,5 +1,6 @@
 package com.mngh1.musicAD.adapter.song;
 
+import android.media.audiofx.Equalizer;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemAdapter;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemViewHolder;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.ItemDraggableRange;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.annotation.DraggableItemStateFlags;
+import com.kabouzeid.appthemehelper.ThemeStore;
 import com.mngh1.musicAD.R;
 import com.mngh1.musicAD.helper.MusicPlayerRemote;
 import com.mngh1.musicAD.interfaces.CabHolder;
@@ -18,6 +20,8 @@ import com.mngh1.musicAD.model.Song;
 import com.mngh1.musicAD.util.ViewUtil;
 
 import java.util.ArrayList;
+
+import es.claucookie.miniequalizerlibrary.EqualizerView;
 
 /**
  * @author Karim Abou Zeid (mngh1)
@@ -44,10 +48,21 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
     public void onBindViewHolder(@NonNull SongAdapter.ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         if (holder.imageText != null) {
-            holder.imageText.setText(String.valueOf(position - current));
+//            holder.imageText.setText(String.valueOf(position - current));
+            holder.imageText.setText(String.valueOf(position + 1));
         }
-        if (holder.getItemViewType() == HISTORY || holder.getItemViewType() == CURRENT) {
-            setAlpha(holder, 0.5f);
+//        if (holder.getItemViewType() == HISTORY || holder.getItemViewType() == CURRENT) {
+//            setAlpha(holder, 0.5f);
+//        }
+        if (holder.getItemViewType() == CURRENT && holder.title != null && holder.equalizer_view != null){
+            int accentColor = ThemeStore.accentColor(activity);
+            holder.title.setTextColor(accentColor);
+            holder.equalizer_view.setVisibility(View.VISIBLE);
+            holder.equalizer_view.animateBars();
+        }
+        if (holder.getItemViewType() != CURRENT && holder.equalizer_view != null){
+            holder.equalizer_view.stopBars();
+            holder.equalizer_view.setVisibility(View.GONE);
         }
     }
 

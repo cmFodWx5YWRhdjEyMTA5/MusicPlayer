@@ -36,8 +36,8 @@ public class AlbumSongAdapter extends SongAdapter {
 
         if (holder.imageText != null) {
             final int trackNumber = MusicUtil.getFixedTrackNumber(song.trackNumber);
-            final String trackNumberString = trackNumber > 0 ? String.valueOf(trackNumber) : "-";
-            holder.imageText.setText(trackNumberString);
+//            final String trackNumberString = trackNumber > 0 ? String.valueOf(trackNumber) : "-";
+            holder.imageText.setText("");
         }
     }
 

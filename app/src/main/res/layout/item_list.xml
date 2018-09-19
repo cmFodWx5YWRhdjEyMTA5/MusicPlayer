@@ -16,6 +16,7 @@
         android:layout_marginLeft="-8dp"
         android:layout_marginStart="-8dp"
         android:tint="?attr/iconColor"
+
         android:tintMode="src_in"
         android:visibility="gone"
         app:srcCompat="@drawable/ic_drag_vertical_white_24dp"
@@ -87,6 +88,20 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/text_color_white" />
         </LinearLayout>
+
+        <es.claucookie.miniequalizerlibrary.EqualizerView
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/equalizer_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:paddingEnd="0dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="0dp"
+            android:paddingStart="16dp"
+            android:layout_gravity="center_vertical"
+            custom:foregroundColor="@color/pink_color"
+            android:visibility="gone"
+            custom:animDuration="3500"/>
 
         <com.mngh1.musicAD.views.IconImageView
             android:id="@+id/menu"

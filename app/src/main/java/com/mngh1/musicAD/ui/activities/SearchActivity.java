@@ -1,6 +1,7 @@
 package com.mngh1.musicAD.ui.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
@@ -14,6 +15,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -25,6 +27,7 @@ import com.mngh1.musicAD.loader.ArtistLoader;
 import com.mngh1.musicAD.loader.SongLoader;
 import com.mngh1.musicAD.misc.WrappedAsyncTaskLoader;
 import com.mngh1.musicAD.ui.activities.base.AbsMusicServiceActivity;
+import com.mngh1.musicAD.util.PreferenceUtil;
 import com.mngh1.musicAD.util.Util;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SearchActivity extends AbsMusicServiceActivity implements SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<List<Object>> {
+public class SearchActivity extends AbsMusicServiceActivity implements SharedPreferences.OnSharedPreferenceChangeListener,SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<List<Object>> {
     public static final String TAG = SearchActivity.class.getSimpleName();
     public static final String QUERY = "query";
     private static final int LOADER_ID = LoaderIds.SEARCH_ACTIVITY;
@@ -45,6 +48,8 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
     Toolbar toolbar;
     @BindView(android.R.id.empty)
     TextView empty;
+    @BindView(R.id.search_layout)
+    LinearLayout search_layout;
 
     SearchView searchView;
 
@@ -79,12 +84,44 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         });
 
         setUpToolBar();
+        setUpBackground();
 
         if (savedInstanceState != null) {
             query = savedInstanceState.getString(QUERY);
         }
 
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (PreferenceUtil.CHANGE_THEME.equals(s)){
+            setUpBackground();
+        }
+    }
+
+    private void setUpBackground() {
+        String bg = PreferenceUtil.getInstance(this).getChangeTheme();
+        switch (bg) {
+            case "them1":
+                search_layout.setBackgroundResource(R.drawable.bg1);
+                break;
+            case "them2":
+                search_layout.setBackgroundResource(R.drawable.bg2);
+                break;
+            case "them3":
+                search_layout.setBackgroundResource(R.drawable.bg3);
+                break;
+            case "them4":
+                search_layout.setBackgroundResource(R.drawable.bg4);
+                break;
+            case "them5":
+                search_layout.setBackgroundResource(R.drawable.bg5);
+                break;
+            default:
+                search_layout.setBackgroundResource(R.drawable.bg1);
+                break;
+        }
     }
 
     @Override
