@@ -1087,6 +1087,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         return playback.getAudioSessionId();
     }
 
+    public void setLooping(boolean a){
+        playback.setLooping(a);
+    }
+
     public MediaSessionCompat getMediaSession() {
         return mediaSession;
     }

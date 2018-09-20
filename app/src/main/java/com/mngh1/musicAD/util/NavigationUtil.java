@@ -16,6 +16,7 @@ import com.mngh1.musicAD.model.Genre;
 import com.mngh1.musicAD.model.Playlist;
 import com.mngh1.musicAD.ui.activities.AlbumDetailActivity;
 import com.mngh1.musicAD.ui.activities.ArtistDetailActivity;
+import com.mngh1.musicAD.ui.activities.EqualizerActivity;
 import com.mngh1.musicAD.ui.activities.GenreDetailActivity;
 import com.mngh1.musicAD.ui.activities.PlaylistDetailActivity;
 
@@ -59,6 +60,11 @@ public class NavigationUtil {
         final Intent intent = new Intent(activity, PlaylistDetailActivity.class);
         intent.putExtra(PlaylistDetailActivity.EXTRA_PLAYLIST, playlist);
 
+        activity.startActivity(intent);
+    }
+
+    public static void goEqualizer(@NonNull final Activity activity){
+        final Intent intent = new Intent(activity, EqualizerActivity.class);
         activity.startActivity(intent);
     }
 

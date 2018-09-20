@@ -1,6 +1,8 @@
 package com.mngh1.musicAD.adapter.song;
 
 import android.media.audiofx.Equalizer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,6 +33,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
     private static final int HISTORY = 0;
     private static final int CURRENT = 1;
     private static final int UP_NEXT = 2;
+    private static boolean isPlay = false;
 
     private int current;
 
@@ -60,11 +63,21 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
             holder.equalizer_view.setVisibility(View.VISIBLE);
             holder.equalizer_view.animateBars();
         }
+
+        Handler handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                String string = msg.getData().getString("MES");
+            }
+        };
         if (holder.getItemViewType() != CURRENT && holder.equalizer_view != null){
-            holder.equalizer_view.stopBars();
             holder.equalizer_view.setVisibility(View.GONE);
         }
+//        holder.itemView.setOnClickListener();
+
     }
+
+
 
     @Override
     public int getItemViewType(int position) {

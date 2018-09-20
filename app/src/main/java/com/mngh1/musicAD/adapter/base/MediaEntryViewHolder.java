@@ -72,6 +72,8 @@ public class MediaEntryViewHolder extends RecyclerView.ViewHolder implements Vie
         }
     }
 
+
+
     @Override
     public boolean onLongClick(View v) {
         return false;
@@ -80,5 +82,9 @@ public class MediaEntryViewHolder extends RecyclerView.ViewHolder implements Vie
     @Override
     public void onClick(View v) {
 
+    }
+
+    public interface setUpEqualizer{
+        void setEqualizer();
     }
 }

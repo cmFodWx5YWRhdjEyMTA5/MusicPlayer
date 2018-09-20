@@ -286,6 +286,16 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
+    @Override
+    public boolean setLooping(boolean a) {
+        try {
+            mCurrentMediaPlayer.setLooping(a);
+            return true;
+        } catch (@NonNull IllegalArgumentException | IllegalStateException e) {
+            return false;
+        }
+    }
+
     /**
      * Returns the audio session ID.
      *

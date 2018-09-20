@@ -334,7 +334,8 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
                 new SleepTimerDialog().show(getSupportFragmentManager(), "SET_SLEEP_TIMER");
                 return true;
             case R.id.action_equalizer:
-                NavigationUtil.openEqualizer(this);
+//                NavigationUtil.openEqualizer(this);
+                NavigationUtil.goEqualizer(this);
                 return true;
             case R.id.action_shuffle_album:
                 MusicPlayerRemote.openAndShuffleQueue(songs, true);

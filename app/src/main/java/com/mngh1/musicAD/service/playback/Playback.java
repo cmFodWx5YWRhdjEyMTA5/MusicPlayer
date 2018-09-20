@@ -42,4 +42,6 @@ public interface Playback {
 
         void onTrackEnded();
     }
+
+    boolean setLooping(boolean a);
 }

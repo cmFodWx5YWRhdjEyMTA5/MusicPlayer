@@ -394,6 +394,11 @@ public class MusicPlayerRemote {
         return -1;
     }
 
+    public static void setLooping(boolean a){
+        if (musicService != null)
+            musicService.setLooping(a);
+    }
+
     public static void playFromUri(Uri uri) {
         if (musicService != null) {
             ArrayList<Song> songs = null;

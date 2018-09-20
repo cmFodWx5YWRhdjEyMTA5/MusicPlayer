@@ -213,7 +213,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".ui.activities.ThemeActivity"></activity>
+        <activity android:name=".ui.activities.ThemeActivity" />
+        <activity android:name=".ui.activities.EqualizerActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 
 </manifest>

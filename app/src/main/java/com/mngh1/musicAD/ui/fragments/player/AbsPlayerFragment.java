@@ -58,7 +58,8 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
                 SongShareDialog.create(song).show(getFragmentManager(), "SHARE_SONG");
                 return true;
             case R.id.action_equalizer:
-                NavigationUtil.openEqualizer(getActivity());
+//                NavigationUtil.openEqualizer(getActivity());
+                NavigationUtil.goEqualizer(getActivity());
                 return true;
             case R.id.action_add_to_playlist:
                 AddToPlaylistDialog.create(song).show(getFragmentManager(), "ADD_PLAYLIST");
