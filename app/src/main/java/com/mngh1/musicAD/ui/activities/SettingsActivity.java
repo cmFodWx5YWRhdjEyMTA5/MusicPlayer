@@ -61,7 +61,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
 
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.statusbar_color));
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -153,11 +153,11 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         public void onCreatePreferences(Bundle bundle, String s) {
             addPreferencesFromResource(R.xml.pref_library);
             addPreferencesFromResource(R.xml.pref_colors);
-            addPreferencesFromResource(R.xml.pref_notification);
+//            addPreferencesFromResource(R.xml.pref_notification);
             addPreferencesFromResource(R.xml.pref_now_playing_screen);
-            addPreferencesFromResource(R.xml.pref_images);
-            addPreferencesFromResource(R.xml.pref_lockscreen);
-            addPreferencesFromResource(R.xml.pref_audio);
+//            addPreferencesFromResource(R.xml.pref_images);
+//            addPreferencesFromResource(R.xml.pref_lockscreen);
+//            addPreferencesFromResource(R.xml.pref_audio);
             addPreferencesFromResource(R.xml.pref_playlists);
             addPreferencesFromResource(R.xml.pref_blacklist);
         }
@@ -194,11 +194,11 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             setSummary(generalTheme);
             generalTheme.setOnPreferenceChangeListener((preference, o) -> {
                 String themeName = (String) o;
-                if (themeName.equals("black") && !App.isProVersion()) {
-                    Toast.makeText(getActivity(), R.string.black_theme_is_a_pro_feature, Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getContext(), PurchaseActivity.class));
-                    return false;
-                }
+//                if (themeName.equals("black") && !App.isProVersion()) {
+//                    Toast.makeText(getActivity(), R.string.black_theme_is_a_pro_feature, Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(getContext(), PurchaseActivity.class));
+//                    return false;
+//                }
 
                 setSummary(generalTheme, o);
 
@@ -214,76 +214,76 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 return true;
             });
 
-            final Preference autoDownloadImagesPolicy = findPreference("auto_download_images_policy");
-            setSummary(autoDownloadImagesPolicy);
-            autoDownloadImagesPolicy.setOnPreferenceChangeListener((preference, o) -> {
-                setSummary(autoDownloadImagesPolicy, o);
-                return true;
-            });
+//            final Preference autoDownloadImagesPolicy = findPreference("auto_download_images_policy");
+//            setSummary(autoDownloadImagesPolicy);
+//            autoDownloadImagesPolicy.setOnPreferenceChangeListener((preference, o) -> {
+//                setSummary(autoDownloadImagesPolicy, o);
+//                return true;
+//            });
 
-            final ATEColorPreference primaryColorPref = (ATEColorPreference) findPreference("primary_color");
-            final int primaryColor = ThemeStore.primaryColor(getActivity());
-            primaryColorPref.setColor(primaryColor, ColorUtil.darkenColor(primaryColor));
-            primaryColorPref.setOnPreferenceClickListener(preference -> {
-                new ColorChooserDialog.Builder(getActivity(), R.string.primary_color)
-                        .accentMode(false)
-                        .allowUserColorInput(true)
-                        .allowUserColorInputAlpha(false)
-                        .preselect(primaryColor)
-                        .show(getActivity());
-                return true;
-            });
+//            final ATEColorPreference primaryColorPref = (ATEColorPreference) findPreference("primary_color");
+//            final int primaryColor = getResources().getColor(R.color.statusbar_color);
+//            primaryColorPref.setColor(primaryColor, ColorUtil.darkenColor(primaryColor));
+//            primaryColorPref.setOnPreferenceClickListener(preference -> {
+//                new ColorChooserDialog.Builder(getActivity(), R.string.primary_color)
+//                        .accentMode(false)
+//                        .allowUserColorInput(true)
+//                        .allowUserColorInputAlpha(false)
+//                        .preselect(primaryColor)
+//                        .show(getActivity());
+//                return true;
+//            });
 
-            final ATEColorPreference accentColorPref = (ATEColorPreference) findPreference("accent_color");
-            final int accentColor = ThemeStore.accentColor(getActivity());
-            accentColorPref.setColor(accentColor, ColorUtil.darkenColor(accentColor));
-            accentColorPref.setOnPreferenceClickListener(preference -> {
-                new ColorChooserDialog.Builder(getActivity(), R.string.accent_color)
-                        .accentMode(true)
-                        .allowUserColorInput(true)
-                        .allowUserColorInputAlpha(false)
-                        .preselect(accentColor)
-                        .show(getActivity());
-                return true;
-            });
+//            final ATEColorPreference accentColorPref = (ATEColorPreference) findPreference("accent_color");
+//            final int accentColor = ThemeStore.accentColor(getActivity());
+//            accentColorPref.setColor(accentColor, ColorUtil.darkenColor(accentColor));
+//            accentColorPref.setOnPreferenceClickListener(preference -> {
+//                new ColorChooserDialog.Builder(getActivity(), R.string.accent_color)
+//                        .accentMode(true)
+//                        .allowUserColorInput(true)
+//                        .allowUserColorInputAlpha(false)
+//                        .preselect(accentColor)
+//                        .show(getActivity());
+//                return true;
+//            });
 
-            TwoStatePreference colorNavBar = (TwoStatePreference) findPreference("should_color_navigation_bar");
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                colorNavBar.setVisible(false);
-            } else {
-                colorNavBar.setChecked(ThemeStore.coloredNavigationBar(getActivity()));
-                colorNavBar.setOnPreferenceChangeListener((preference, newValue) -> {
-                    ThemeStore.editTheme(getActivity())
-                            .coloredNavigationBar((Boolean) newValue)
-                            .commit();
-                    getActivity().recreate();
-                    return true;
-                });
-            }
+//            TwoStatePreference colorNavBar = (TwoStatePreference) findPreference("should_color_navigation_bar");
+//            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//                colorNavBar.setVisible(false);
+//            } else {
+//                colorNavBar.setChecked(ThemeStore.coloredNavigationBar(getActivity()));
+//                colorNavBar.setOnPreferenceChangeListener((preference, newValue) -> {
+//                    ThemeStore.editTheme(getActivity())
+//                            .coloredNavigationBar((Boolean) newValue)
+//                            .commit();
+//                    getActivity().recreate();
+//                    return true;
+//                });
+//            }
 
-            final TwoStatePreference classicNotification = (TwoStatePreference) findPreference("classic_notification");
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                classicNotification.setVisible(false);
-            } else {
-                classicNotification.setChecked(PreferenceUtil.getInstance(getActivity()).classicNotification());
-                classicNotification.setOnPreferenceChangeListener((preference, newValue) -> {
-                    // Save preference
-                    PreferenceUtil.getInstance(getActivity()).setClassicNotification((Boolean) newValue);
-                    return true;
-                });
-            }
-
-            final TwoStatePreference coloredNotification = (TwoStatePreference) findPreference("colored_notification");
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                coloredNotification.setEnabled(PreferenceUtil.getInstance(getActivity()).classicNotification());
-            } else {
-                coloredNotification.setChecked(PreferenceUtil.getInstance(getActivity()).coloredNotification());
-                coloredNotification.setOnPreferenceChangeListener((preference, newValue) -> {
-                    // Save preference
-                    PreferenceUtil.getInstance(getActivity()).setColoredNotification((Boolean) newValue);
-                    return true;
-                });
-            }
+//            final TwoStatePreference classicNotification = (TwoStatePreference) findPreference("classic_notification");
+//            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+//                classicNotification.setVisible(false);
+//            } else {
+//                classicNotification.setChecked(PreferenceUtil.getInstance(getActivity()).classicNotification());
+//                classicNotification.setOnPreferenceChangeListener((preference, newValue) -> {
+//                    // Save preference
+//                    PreferenceUtil.getInstance(getActivity()).setClassicNotification((Boolean) newValue);
+//                    return true;
+//                });
+//            }
+//
+//            final TwoStatePreference coloredNotification = (TwoStatePreference) findPreference("colored_notification");
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                coloredNotification.setEnabled(PreferenceUtil.getInstance(getActivity()).classicNotification());
+//            } else {
+//                coloredNotification.setChecked(PreferenceUtil.getInstance(getActivity()).coloredNotification());
+//                coloredNotification.setOnPreferenceChangeListener((preference, newValue) -> {
+//                    // Save preference
+//                    PreferenceUtil.getInstance(getActivity()).setColoredNotification((Boolean) newValue);
+//                    return true;
+//                });
+//            }
 
             final TwoStatePreference colorAppShortcuts = (TwoStatePreference) findPreference("should_color_app_shortcuts");
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
@@ -301,15 +301,15 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 });
             }
 
-            final Preference equalizer = findPreference("equalizer");
+//            final Preference equalizer = findPreference("equalizer");
 //            if (!hasEqualizer()) {
 //                equalizer.setEnabled(false);
 //                equalizer.setSummary(getResources().getString(R.string.no_equalizer));
 //            }
-            equalizer.setOnPreferenceClickListener(preference -> {
-                NavigationUtil.goEqualizer(getActivity());
-                return true;
-            });
+//            equalizer.setOnPreferenceClickListener(preference -> {
+//                NavigationUtil.goEqualizer(getActivity());
+//                return true;
+//            });
 
             updateNowPlayingScreenSummary();
         }

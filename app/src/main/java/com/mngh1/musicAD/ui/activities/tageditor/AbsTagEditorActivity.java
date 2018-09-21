@@ -227,7 +227,7 @@ public abstract class AbsTagEditorActivity extends AbsBaseActivity {
         observableScrollView.setPadding(0, Util.getActionBarSize(this), 0, 0);
         observableScrollViewCallbacks.onScrollChanged(observableScrollView.getCurrentScrollY(), false, false);
 
-        setColors(getIntent().getIntExtra(EXTRA_PALETTE, ThemeStore.primaryColor(this)));
+        setColors(getIntent().getIntExtra(EXTRA_PALETTE, getResources().getColor(R.color.statusbar_color)));
         toolbar.setBackgroundColor(paletteColorPrimary);
     }
 

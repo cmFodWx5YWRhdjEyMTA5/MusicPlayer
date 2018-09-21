@@ -25,25 +25,25 @@ public class AppIntroActivity extends IntroActivity {
                 .title(R.string.app_name)
                 .description(R.string.welcome_to_phonograph)
                 .image(R.mipmap.ic_launcher1)
-                .background(R.color.md_blue_grey_100)
-                .backgroundDark(R.color.md_blue_grey_200)
+                .background(R.color.ate_navigation_drawer_selected_dark)
+                .backgroundDark(R.color.md_black_1000)
                 .layout(R.layout.fragment_simple_slide_large_image)
                 .build());
-        addSlide(new SimpleSlide.Builder()
-                .title(R.string.label_playing_queue)
-                .description(R.string.open_playing_queue_instruction)
-                .image(R.drawable.tutorial_queue_swipe_up)
-                .background(R.color.md_deep_purple_500)
-                .backgroundDark(R.color.md_deep_purple_600)
-                .layout(R.layout.fragment_simple_slide_large_image)
-                .build());
-        addSlide(new SimpleSlide.Builder()
-                .title(R.string.label_playing_queue)
-                .description(R.string.rearrange_playing_queue_instruction)
-                .image(R.drawable.tutorial_rearrange_queue)
-                .background(R.color.md_indigo_500)
-                .backgroundDark(R.color.md_indigo_600)
-                .layout(R.layout.fragment_simple_slide_large_image)
-                .build());
+//        addSlide(new SimpleSlide.Builder()
+//                .title(R.string.label_playing_queue)
+//                .description(R.string.open_playing_queue_instruction)
+//                .image(R.drawable.tutorial_queue_swipe_up)
+//                .background(R.color.md_deep_purple_500)
+//                .backgroundDark(R.color.md_deep_purple_600)
+//                .layout(R.layout.fragment_simple_slide_large_image)
+//                .build());
+//        addSlide(new SimpleSlide.Builder()
+//                .title(R.string.label_playing_queue)
+//                .description(R.string.rearrange_playing_queue_instruction)
+//                .image(R.drawable.tutorial_rearrange_queue)
+//                .background(R.color.md_indigo_500)
+//                .backgroundDark(R.color.md_indigo_600)
+//                .layout(R.layout.fragment_simple_slide_large_image)
+//                .build());
     }
 }

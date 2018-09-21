@@ -42,6 +42,6 @@ public abstract class AbsMainActivityFragment extends Fragment {
 
     public void setStatusbarColorAuto(View view) {
         // we don't want to use statusbar color because we are doing the color darkening on our own to support KitKat
-        setStatusbarColor(view, ThemeStore.primaryColor(getContext()));
+        setStatusbarColor(view, getResources().getColor(R.color.statusbar_color));
     }
 }

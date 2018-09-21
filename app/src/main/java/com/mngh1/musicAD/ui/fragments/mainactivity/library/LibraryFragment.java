@@ -199,7 +199,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         cab = new MaterialCab(getMainActivity(), R.id.cab_stub)
                 .setMenu(menuRes)
                 .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-                .setBackgroundColor(PhonographColorUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(getActivity())))
+                .setBackgroundColor(PhonographColorUtil.shiftBackgroundColorForLightText(getResources().getColor(R.color.statusbar_color)))
                 .start(callback);
         return cab;
     }

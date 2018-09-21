@@ -60,7 +60,7 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
 
     public void setStatusbarColorAuto() {
         // we don't want to use statusbar color because we are doing the color darkening on our own to support KitKat
-        setStatusbarColor(ThemeStore.primaryColor(this));
+        setStatusbarColor(getResources().getColor(R.color.statusbar_color));
     }
 
     public void setTaskDescriptionColor(@ColorInt int color) {

@@ -166,7 +166,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
     }
 
     private void setUpToolbar() {
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.statusbar_color));
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

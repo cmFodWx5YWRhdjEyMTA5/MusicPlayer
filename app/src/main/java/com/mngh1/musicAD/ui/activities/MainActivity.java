@@ -190,6 +190,9 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                 case R.id.nav_theme:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, ThemeActivity.class)), 200);
                     break;
+                case R.id.nav_equalizer:
+                    new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, EqualizerActivity.class)), 200);
+                    break;
                 case R.id.nav_settings:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)), 200);
                     break;

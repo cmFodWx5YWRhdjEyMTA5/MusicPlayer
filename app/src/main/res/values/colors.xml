@@ -7,4 +7,5 @@
     <color name="app_shortcut_default_background">@color/md_grey_50</color>
     <color name="text_color_white">#FFFFFF</color>
     <color name="black_color">#000000</color>
+    <color name="statusbar_color">#000000</color>
 </resources>

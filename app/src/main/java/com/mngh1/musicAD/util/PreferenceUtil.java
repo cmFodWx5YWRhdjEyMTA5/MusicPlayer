@@ -110,7 +110,7 @@ public final class PreferenceUtil {
 
     @StyleRes
     public int getGeneralTheme() {
-        return getThemeResFromPrefValue(mPreferences.getString(GENERAL_THEME, "light"));
+        return getThemeResFromPrefValue(mPreferences.getString(GENERAL_THEME, "black"));
     }
 
     public void setGeneralTheme(String theme) {
@@ -440,7 +440,7 @@ public final class PreferenceUtil {
     }
 
     public final String autoDownloadImagesPolicy() {
-        return mPreferences.getString(AUTO_DOWNLOAD_IMAGES_POLICY, "only_wifi");
+        return mPreferences.getString(AUTO_DOWNLOAD_IMAGES_POLICY, "always");
     }
 
     public final File getStartDirectory() {

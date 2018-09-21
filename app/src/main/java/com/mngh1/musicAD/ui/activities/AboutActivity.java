@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -31,7 +32,7 @@ import de.psdev.licensesdialog.LicensesDialog;
  * @author Karim Abou Zeid (mngh1)
  */
 @SuppressWarnings("FieldCanBeLocal")
-public class AboutActivity extends AbsBaseActivity implements View.OnClickListener {
+public class AboutActivity extends AbsBaseActivity {
 
     private static String GITHUB = "https://github.com/mngh1/Phonograph";
 
@@ -63,6 +64,8 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     Toolbar toolbar;
     @BindView(R.id.app_version)
     TextView appVersion;
+    @BindView(R.id.moreApp_layout)
+    LinearLayout moreApp_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +88,7 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpToolbar() {
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.statusbar_color));
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -96,6 +99,13 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpOnClickListeners() {
+        moreApp_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=DINH+VIET+HUNG"));
+                startActivity(a);
+            }
+        });
     }
 
     @Override
@@ -114,10 +124,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
             e.printStackTrace();
         }
         return "Unkown";
-    }
-
-    @Override
-    public void onClick(View v) {
     }
 
     private void openUrl(String url) {

@@ -10,6 +10,7 @@
     <string name="action_theme">"Themes"</string>
     <string name="action_grant">Grant</string>
     <string name="action_about">About</string>
+    <string name="action_equalizer">Equalizer</string>
     <string name="action_clear_playlist">Clear playlist</string>
     <string name="action_add_to_favorites">Add to favorites</string>
     <string name="action_remove_from_favorites">Remove from favorites</string>
@@ -204,6 +205,7 @@
     <string name="thank_you">Thank you!</string>
     <string name="restored_previous_purchase_please_restart">Restored previous purchase. Please restart the app to make use of all features.</string>
     <string name="version">Version</string>
+    <string name="moreApp">More App</string>
     <string name="author">Author</string>
     <string name="write_an_email">Write an email</string>
     <string name="add_to_google_plus_circles">Add to Google Plus circles</string>
@@ -229,7 +231,7 @@
     <string name="up_next">Up next</string>
     <string name="pref_title_now_playing_screen_appearance">Appearance</string>
     <string name="intro_label">Introduction</string>
-    <string name="welcome_to_phonograph">"Welcome to Phonograph, a beautiful and lightweight music player for Android. "</string>
+    <string name="welcome_to_phonograph">"Welcome to Easy Music Player, a beautiful and lightweight music player for Android. "</string>
     <string name="open_playing_queue_instruction">Swipe the card in the now playing screen up to reveal the full playing queue.</string>
     <string name="rearrange_playing_queue_instruction">Rearrange the playing queue by dragging a song from its track number.</string>
     <string name="library">Library</string>

@@ -120,7 +120,7 @@ public class BugReportActivity extends AbsThemeActivity {
 
     private void initViews() {
         final int accentColor = ThemeStore.accentColor(this);
-        final int primaryColor = ThemeStore.primaryColor(this);
+        final int primaryColor = getResources().getColor(R.color.statusbar_color);
         toolbar.setBackgroundColor(primaryColor);
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions

@@ -133,7 +133,7 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
     }
 
     private void setUpToolBar() {
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.statusbar_color));
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setTitle(genre.name);

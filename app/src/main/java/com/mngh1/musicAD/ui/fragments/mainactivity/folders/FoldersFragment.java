@@ -203,7 +203,7 @@ public class FoldersFragment extends AbsMainActivityFragment implements SharedPr
     }
 
     private void setUpAppbarColor() {
-        int primaryColor = ThemeStore.primaryColor(getActivity());
+        int primaryColor = getResources().getColor(R.color.statusbar_color);
         appbar.setBackgroundColor(primaryColor);
         toolbar.setBackgroundColor(primaryColor);
         breadCrumbs.setBackgroundColor(primaryColor);

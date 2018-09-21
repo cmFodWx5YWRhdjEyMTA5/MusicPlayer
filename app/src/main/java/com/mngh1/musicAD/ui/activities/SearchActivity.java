@@ -136,7 +136,7 @@ public class SearchActivity extends AbsMusicServiceActivity implements SharedPre
     }
 
     private void setUpToolBar() {
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.statusbar_color));
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
