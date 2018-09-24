@@ -58,9 +58,10 @@ public class MusicUtil {
     public static Intent createShareSongFileIntent(@NonNull final Song song, Context context) {
         try {
 
+            File file = new File(song.data);
             return new Intent()
                     .setAction(Intent.ACTION_SEND)
-                    .putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName(), new File(song.data)))
+                    .putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
                     .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     .setType("audio/*");
         } catch (IllegalArgumentException e) {

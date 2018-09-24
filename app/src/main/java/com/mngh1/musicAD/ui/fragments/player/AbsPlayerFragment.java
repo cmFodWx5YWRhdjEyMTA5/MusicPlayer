@@ -70,11 +70,11 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
             case R.id.action_save_playing_queue:
                 CreatePlaylistDialog.create(MusicPlayerRemote.getPlayingQueue()).show(getActivity().getSupportFragmentManager(), "ADD_TO_PLAYLIST");
                 return true;
-            case R.id.action_tag_editor:
-                Intent intent = new Intent(getActivity(), SongTagEditorActivity.class);
-                intent.putExtra(AbsTagEditorActivity.EXTRA_ID, song.id);
-                startActivity(intent);
-                return true;
+//            case R.id.action_tag_editor:
+//                Intent intent = new Intent(getActivity(), SongTagEditorActivity.class);
+//                intent.putExtra(AbsTagEditorActivity.EXTRA_ID, song.id);
+//                startActivity(intent);
+//                return true;
             case R.id.action_details:
                 SongDetailDialog.create(song).show(getFragmentManager(), "SONG_DETAIL");
                 return true;

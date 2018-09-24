@@ -147,23 +147,39 @@ public class SearchActivity extends AbsMusicServiceActivity implements SharedPre
         getMenuInflater().inflate(R.menu.menu_search, menu);
 
         final MenuItem searchItem = menu.findItem(R.id.search);
-        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView = (SearchView) searchItem.getActionView();
+
         searchView.setQueryHint(getString(R.string.search_hint));
         searchView.setMaxWidth(Integer.MAX_VALUE);
-
-        MenuItemCompat.expandActionView(searchItem);
-        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+        searchItem.expandActionView();
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
                 return true;
             }
 
             @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
                 onBackPressed();
                 return false;
             }
         });
+
+//        MenuItemCompat.expandActionView(searchItem);
+//        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+//            @Override
+//            public boolean onMenuItemActionExpand(MenuItem item) {
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onMenuItemActionCollapse(MenuItem item) {
+//                onBackPressed();
+//                return false;
+//            }
+//        });
 
         searchView.setQuery(query, false);
         searchView.post(() -> searchView.setOnQueryTextListener(SearchActivity.this));
@@ -209,13 +225,15 @@ public class SearchActivity extends AbsMusicServiceActivity implements SharedPre
         }
     }
 
+    @NonNull
     @Override
     public Loader<List<Object>> onCreateLoader(int id, Bundle args) {
         return new AsyncSearchResultLoader(this, query);
     }
 
+
     @Override
-    public void onLoadFinished(Loader<List<Object>> loader, List<Object> data) {
+    public void onLoadFinished(@NonNull Loader<List<Object>> loader, List<Object> data) {
         adapter.swapDataSet(data);
     }
 

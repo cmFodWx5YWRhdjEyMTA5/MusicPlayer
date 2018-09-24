@@ -99,17 +99,17 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             restoreCurrentFragment();
         }
 
-        if (!checkShowIntro()) {
-            checkShowChangelog();
-        }
+//        if (!checkShowIntro()) {
+//            checkShowChangelog();
+//        }
     }
 
     private void setMusicChooser(int key) {
-        if (!App.isProVersion() && key == FOLDERS) {
-            Toast.makeText(this, R.string.folder_view_is_a_pro_feature, Toast.LENGTH_LONG).show();
-            startActivityForResult(new Intent(this, PurchaseActivity.class), PURCHASE_REQUEST);
-            key = LIBRARY;
-        }
+//        if (!App.isProVersion() && key == FOLDERS) {
+//            Toast.makeText(this, R.string.folder_view_is_a_pro_feature, Toast.LENGTH_LONG).show();
+//            startActivityForResult(new Intent(this, PurchaseActivity.class), PURCHASE_REQUEST);
+//            key = LIBRARY;
+//        }
 
         PreferenceUtil.getInstance(this).setLastMusicChooser(key);
         switch (key) {
@@ -178,9 +178,9 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                 case R.id.nav_folders:
                     new Handler().postDelayed(() -> setMusicChooser(FOLDERS), 200);
                     break;
-                case R.id.buy_pro:
-                    new Handler().postDelayed(() -> startActivityForResult(new Intent(MainActivity.this, PurchaseActivity.class), PURCHASE_REQUEST), 200);
-                    break;
+//                case R.id.buy_pro:
+//                    new Handler().postDelayed(() -> startActivityForResult(new Intent(MainActivity.this, PurchaseActivity.class), PURCHASE_REQUEST), 200);
+//                    break;
                 case R.id.action_scan:
                     new Handler().postDelayed(() -> {
                         ScanMediaFolderChooserDialog dialog = ScanMediaFolderChooserDialog.create();
@@ -211,7 +211,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     }
 
     private void setUpPro() {
-        navigationView.getMenu().removeGroup(R.id.navigation_drawer_menu_category_buy_pro);
+//        navigationView.getMenu().removeGroup(R.id.navigation_drawer_menu_category_buy_pro);
     }
 
     private void setUpDrawerLayout() {

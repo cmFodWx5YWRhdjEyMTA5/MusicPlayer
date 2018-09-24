@@ -24,10 +24,7 @@
         tools:ignore="UnusedAttribute">
         <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.APP_MUSIC" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -112,8 +109,14 @@
             android:label="@string/action_about" />
         <activity
             android:name=".ui.activities.intro.AppIntroActivity"
-            android:label="@string/intro_label"
-            android:theme="@style/Theme.Intro" />
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Intro">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.activities.bugreport.BugReportActivity"
             android:label="@string/report_an_issue" />
@@ -214,8 +217,9 @@
         </provider>
 
         <activity android:name=".ui.activities.ThemeActivity" />
-        <activity android:name=".ui.activities.EqualizerActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity
+            android:name=".ui.activities.EqualizerActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
     </application>
 
 </manifest>
