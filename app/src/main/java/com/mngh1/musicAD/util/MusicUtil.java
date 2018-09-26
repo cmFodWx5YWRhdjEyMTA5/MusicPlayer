@@ -1,23 +1,32 @@
 package com.mngh1.musicAD.util;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.mngh1.musicAD.BuildConfig;
 import com.mngh1.musicAD.R;
 import com.mngh1.musicAD.helper.MusicPlayerRemote;
 import com.mngh1.musicAD.loader.PlaylistLoader;
@@ -33,6 +42,7 @@ import org.jaudiotagger.tag.FieldKey;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Permission;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -59,17 +69,80 @@ public class MusicUtil {
         try {
 
             File file = new File(song.data);
-            return new Intent()
-                    .setAction(Intent.ACTION_SEND)
-                    .putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
-                    .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    .setType("audio/*");
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
+//                return new Intent()
+//                        .setAction(Intent.ACTION_SEND)
+//                        .putExtra(Intent.EXTRA_STREAM, GenericFileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", file))
+//                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//                        .setType("audio/*");
+
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                intent.setType("audio/*");
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                Uri uri = GenericFileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", file);
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
+                return  intent;
+            }
+
+            else
+                return new Intent()
+                        .setAction(Intent.ACTION_SEND)
+                        .putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
+                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        .setType("audio/*");
         } catch (IllegalArgumentException e) {
             // TODO the path is most likely not like /storage/emulated/0/... but something like /storage/28C7-75B0/...
             e.printStackTrace();
             Toast.makeText(context, "Could not share this file, I'm aware of the issue.", Toast.LENGTH_SHORT).show();
             return new Intent();
         }
+    }
+
+    public static boolean checkWriteExternalStoragePermission(final Activity context){
+        int check = ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (check == PackageManager.PERMISSION_GRANTED){
+                return true;
+            }else {
+                return false;
+//                ActivityCompat.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1024);
+            }
+        }else
+            return true;
+
+    }
+
+    public static boolean checkSystemWritePermission(final Activity context) {
+        boolean retVal = true;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            retVal = Settings.System.canWrite(context);
+            if (retVal) {
+                Log.d("TAG", "Can Write Settings ");
+            } else {
+                new AlertDialog.Builder(context)
+                        .setTitle(R.string.set_ringtone)
+                        .setMessage(context.getString(R.string.write_setting_text))
+                        .setPositiveButton(R.string.alert_ok_button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                                intent.setData(Uri.parse("package:" + context.getPackageName()));
+                                context.startActivity(intent);
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton(R.string.alert_cancel_button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+            }
+        }
+        return retVal;
     }
 
     public static void setRingtone(@NonNull final Context context, final int id) {
@@ -93,6 +166,7 @@ public class MusicUtil {
             try {
                 if (cursor != null && cursor.getCount() == 1) {
                     cursor.moveToFirst();
+                    RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, uri);
                     Settings.System.putString(resolver, Settings.System.RINGTONE, uri.toString());
                     final String message = context.getString(R.string.x_has_been_set_as_ringtone, cursor.getString(0));
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
@@ -103,6 +177,7 @@ public class MusicUtil {
                 }
             }
         } catch (SecurityException ignored) {
+            ignored.printStackTrace();
         }
     }
 

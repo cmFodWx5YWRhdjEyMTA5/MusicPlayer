@@ -40,10 +40,16 @@ import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.CannotWriteException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.TagOptionSingleton;
+import org.jaudiotagger.tag.id3.AbstractID3v1Tag;
+import org.jaudiotagger.tag.id3.AbstractID3v2Tag;
+import org.jaudiotagger.tag.id3.ID3v1Tag;
+import org.jaudiotagger.tag.id3.ID3v23Tag;
+import org.jaudiotagger.tag.id3.ID3v24Tag;
 import org.jaudiotagger.tag.images.Artwork;
 import org.jaudiotagger.tag.images.ArtworkFactory;
 
@@ -300,16 +306,34 @@ public abstract class AbsTagEditorActivity extends AbsBaseActivity {
                 for (String filePath : info.filePaths) {
                     publishProgress(++counter, info.filePaths.size());
                     try {
-                        AudioFile audioFile = AudioFileIO.read(new File(filePath));
-                        Tag tag = audioFile.getTagOrCreateAndSetDefault();
+                        AudioFile audioFile =  AudioFileIO.read(new File(filePath));
+
+                        ID3v1Tag v1Tag = new ID3v1Tag();
+                        audioFile.setTag(new ID3v23Tag());
+                        Tag tag = audioFile.getTag();
+//                        AbstractID3v2Tag v2Tag = audioFile.getID3v2Tag();
+//                        ID3v24Tag        v24tag = audioFile.getID3v2TagAsv24();
+
 
                         if (info.fieldKeyValueMap != null) {
                             for (Map.Entry<FieldKey, String> entry : info.fieldKeyValueMap.entrySet()) {
                                 try {
-//                                    TagOptionSingleton.getInstance().set(true);
-                                    tag.setField(entry.getKey(), entry.getValue());
-//                                    audioFile.commit();
-//                                    AudioFileIO.write(audioFile);
+//                                    if (audioFile.hasID3v1Tag()){
+//                                        v1Tag.setField(entry.getKey(), entry.getValue());
+//                                        audioFile.setID3v1Tag(v1Tag);
+//                                        AudioFileIO.write(audioFile);
+//                                    }
+//                                    if (audioFile.hasID3v2Tag()){
+//                                        v2Tag.setField(entry.getKey(), entry.getValue());
+//                                        audioFile.setID3v2Tag(v2Tag);
+//                                        AudioFileIO.write(audioFile);
+//                                    }
+
+                                    tag.deleteField(entry.getKey());
+                                    tag.addField(entry.getKey(), entry.getValue());
+
+                                    audioFile.commit();
+                                    AudioFileIO.write(audioFile);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -319,16 +343,21 @@ public abstract class AbsTagEditorActivity extends AbsBaseActivity {
                         if (info.artworkInfo != null) {
                             if (info.artworkInfo.artwork == null) {
                                 tag.deleteArtworkField();
+                                tag.setField(artwork);
+                                audioFile.setTag(tag);
+                                audioFile.commit();
                                 deletedArtwork = true;
                             } else if (artwork != null) {
-                                tag.deleteArtworkField();
+                                tag.addField(artwork);
                                 tag.setField(artwork);
+                                audioFile.setTag(tag);
+                                audioFile.commit();
                                 wroteArtwork = true;
                             }
                         }
-
+                        File mp3 = new File(filePath);
                         audioFile.commit();
-                    } catch (@NonNull CannotReadException | IOException | CannotWriteException | TagException | ReadOnlyFileException | InvalidAudioFrameException e) {
+                    } catch (@NonNull IOException | CannotWriteException | TagException | ReadOnlyFileException | InvalidAudioFrameException e) {
                         e.printStackTrace();
                     }
                 }

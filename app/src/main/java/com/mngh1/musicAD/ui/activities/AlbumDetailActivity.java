@@ -355,11 +355,11 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
             case android.R.id.home:
                 super.onBackPressed();
                 return true;
-//            case R.id.action_tag_editor:
-//                Intent intent = new Intent(this, AlbumTagEditorActivity.class);
-//                intent.putExtra(AbsTagEditorActivity.EXTRA_ID, getAlbum().getId());
-//                startActivityForResult(intent, TAG_EDITOR_REQUEST);
-//                return true;
+            case R.id.action_tag_editor:
+                Intent intent = new Intent(this, AlbumTagEditorActivity.class);
+                intent.putExtra(AbsTagEditorActivity.EXTRA_ID, getAlbum().getId());
+                startActivityForResult(intent, TAG_EDITOR_REQUEST);
+                return true;
             case R.id.action_go_to_artist:
                 NavigationUtil.goToArtist(this, getAlbum().getArtistId());
                 return true;

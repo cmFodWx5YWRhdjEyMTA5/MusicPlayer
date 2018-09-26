@@ -38,6 +38,19 @@ public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.
     ImageView theme4;
     @BindView(R.id.theme5)
     ImageView theme5;
+    @BindView(R.id.theme6)
+    ImageView theme6;
+    @BindView(R.id.theme7)
+    ImageView theme7;
+    @BindView(R.id.theme8)
+    ImageView theme8;
+    @BindView(R.id.theme9)
+    ImageView theme9;
+    @BindView(R.id.theme10)
+    ImageView theme10;
+    @BindView(R.id.theme11)
+    ImageView theme11;
+
 
 
 //    private SharedPreferences sp ;
@@ -91,6 +104,56 @@ public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.
                 PreferenceUtil.getInstance(getParent()).setChangeTheme("them5");
             }
         });
+
+        theme6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                theme.setBackgroundResource(R.drawable.bg6);
+                PreferenceUtil.getInstance(getParent()).setChangeTheme("them6");
+            }
+        });
+
+        theme7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                theme.setBackgroundResource(R.drawable.bg7);
+                PreferenceUtil.getInstance(getParent()).setChangeTheme("them7");
+            }
+        });
+
+        theme8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                theme.setBackgroundResource(R.drawable.bg8);
+                PreferenceUtil.getInstance(getParent()).setChangeTheme("them8");
+            }
+        });
+
+        theme9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                theme.setBackgroundResource(R.drawable.bg9);
+                PreferenceUtil.getInstance(getParent()).setChangeTheme("them9");
+            }
+        });
+
+        theme10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                theme.setBackgroundResource(R.drawable.bg10);
+                PreferenceUtil.getInstance(getParent()).setChangeTheme("them10");
+            }
+        });
+
+        theme11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                theme.setBackgroundResource(R.drawable.bg11);
+                PreferenceUtil.getInstance(getParent()).setChangeTheme("them11");
+            }
+        });
+
+
 
 
 
