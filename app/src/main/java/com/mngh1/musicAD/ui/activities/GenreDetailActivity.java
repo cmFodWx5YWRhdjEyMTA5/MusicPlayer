@@ -105,6 +105,24 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
             case "them5":
                 theme_genre.setBackgroundResource(R.drawable.bg5);
                 break;
+            case "them6":
+                theme_genre.setBackgroundResource(R.drawable.bg6);
+                break;
+            case "them8":
+                theme_genre.setBackgroundResource(R.drawable.bg8);
+                break;
+            case "them7":
+                theme_genre.setBackgroundResource(R.drawable.bg7);
+                break;
+            case "them9":
+                theme_genre.setBackgroundResource(R.drawable.bg9);
+                break;
+            case "them10":
+                theme_genre.setBackgroundResource(R.drawable.bg10);
+                break;
+            case "them11":
+                theme_genre.setBackgroundResource(R.drawable.bg11);
+                break;
             default:
                 theme_genre.setBackgroundResource(R.drawable.bg1);
                 break;

@@ -47,16 +47,16 @@ public class SongMenuHelper {
             case R.id.action_add_to_current_playing:
                 MusicPlayerRemote.enqueue(song);
                 return true;
-            case R.id.action_tag_editor:
-                if (!MusicUtil.checkWriteExternalStoragePermission(activity)) return false;
-                else {
-                    Intent tagEditorIntent = new Intent(activity, SongTagEditorActivity.class);
-                    tagEditorIntent.putExtra(AbsTagEditorActivity.EXTRA_ID, song.id);
-                    if (activity instanceof PaletteColorHolder)
-                        tagEditorIntent.putExtra(AbsTagEditorActivity.EXTRA_PALETTE, ((PaletteColorHolder) activity).getPaletteColor());
-                    activity.startActivity(tagEditorIntent);
-                    return true;
-                }
+//            case R.id.action_tag_editor:
+//                if (!MusicUtil.checkWriteExternalStoragePermission(activity)) return false;
+//                else {
+//                    Intent tagEditorIntent = new Intent(activity, SongTagEditorActivity.class);
+//                    tagEditorIntent.putExtra(AbsTagEditorActivity.EXTRA_ID, song.id);
+//                    if (activity instanceof PaletteColorHolder)
+//                        tagEditorIntent.putExtra(AbsTagEditorActivity.EXTRA_PALETTE, ((PaletteColorHolder) activity).getPaletteColor());
+//                    activity.startActivity(tagEditorIntent);
+//                    return true;
+//                }
 
             case R.id.action_details:
                 SongDetailDialog.create(song).show(activity.getSupportFragmentManager(), "SONG_DETAILS");

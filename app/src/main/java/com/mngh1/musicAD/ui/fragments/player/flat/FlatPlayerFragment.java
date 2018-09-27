@@ -137,6 +137,24 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements SharedPrefe
             case "them5":
                 player_panel_content.setBackgroundResource(R.drawable.bg5);
                 break;
+            case "them6":
+                player_panel_content.setBackgroundResource(R.drawable.bg6);
+                break;
+            case "them8":
+                player_panel_content.setBackgroundResource(R.drawable.bg8);
+                break;
+            case "them7":
+                player_panel_content.setBackgroundResource(R.drawable.bg7);
+                break;
+            case "them9":
+                player_panel_content.setBackgroundResource(R.drawable.bg9);
+                break;
+            case "them10":
+                player_panel_content.setBackgroundResource(R.drawable.bg10);
+                break;
+            case "them11":
+                player_panel_content.setBackgroundResource(R.drawable.bg11);
+                break;
             default:
                 player_panel_content.setBackgroundResource(R.drawable.bg1);
                 break;

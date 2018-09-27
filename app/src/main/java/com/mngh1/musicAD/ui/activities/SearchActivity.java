@@ -118,6 +118,24 @@ public class SearchActivity extends AbsMusicServiceActivity implements SharedPre
             case "them5":
                 search_layout.setBackgroundResource(R.drawable.bg5);
                 break;
+            case "them6":
+                search_layout.setBackgroundResource(R.drawable.bg6);
+                break;
+            case "them8":
+                search_layout.setBackgroundResource(R.drawable.bg8);
+                break;
+            case "them7":
+                search_layout.setBackgroundResource(R.drawable.bg7);
+                break;
+            case "them9":
+                search_layout.setBackgroundResource(R.drawable.bg9);
+                break;
+            case "them10":
+                search_layout.setBackgroundResource(R.drawable.bg10);
+                break;
+            case "them11":
+                search_layout.setBackgroundResource(R.drawable.bg11);
+                break;
             default:
                 search_layout.setBackgroundResource(R.drawable.bg1);
                 break;

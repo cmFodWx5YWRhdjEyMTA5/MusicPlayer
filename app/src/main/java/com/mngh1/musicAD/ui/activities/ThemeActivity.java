@@ -185,6 +185,24 @@ public class ThemeActivity extends AbsBaseActivity implements SharedPreferences.
             case "them5":
                 theme.setBackgroundResource(R.drawable.bg5);
                 break;
+            case "them6":
+                theme.setBackgroundResource(R.drawable.bg6);
+                break;
+            case "them8":
+                theme.setBackgroundResource(R.drawable.bg8);
+                break;
+            case "them7":
+                theme.setBackgroundResource(R.drawable.bg7);
+                break;
+            case "them9":
+                theme.setBackgroundResource(R.drawable.bg9);
+                break;
+            case "them10":
+                theme.setBackgroundResource(R.drawable.bg10);
+                break;
+            case "them11":
+                theme.setBackgroundResource(R.drawable.bg11);
+                break;
             default:
                 theme.setBackgroundResource(R.drawable.bg1);
                 break;

@@ -159,6 +159,24 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
             case "them5":
                 theme_album.setBackgroundResource(R.drawable.bg5);
                 break;
+            case "them6":
+                theme_album.setBackgroundResource(R.drawable.bg6);
+                break;
+            case "them8":
+                theme_album.setBackgroundResource(R.drawable.bg8);
+                break;
+            case "them7":
+                theme_album.setBackgroundResource(R.drawable.bg7);
+                break;
+            case "them9":
+                theme_album.setBackgroundResource(R.drawable.bg9);
+                break;
+            case "them10":
+                theme_album.setBackgroundResource(R.drawable.bg10);
+                break;
+            case "them11":
+                theme_album.setBackgroundResource(R.drawable.bg11);
+                break;
             default:
                 theme_album.setBackgroundResource(R.drawable.bg1);
                 break;
@@ -355,11 +373,11 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
             case android.R.id.home:
                 super.onBackPressed();
                 return true;
-            case R.id.action_tag_editor:
-                Intent intent = new Intent(this, AlbumTagEditorActivity.class);
-                intent.putExtra(AbsTagEditorActivity.EXTRA_ID, getAlbum().getId());
-                startActivityForResult(intent, TAG_EDITOR_REQUEST);
-                return true;
+//            case R.id.action_tag_editor:
+//                Intent intent = new Intent(this, AlbumTagEditorActivity.class);
+//                intent.putExtra(AbsTagEditorActivity.EXTRA_ID, getAlbum().getId());
+//                startActivityForResult(intent, TAG_EDITOR_REQUEST);
+//                return true;
             case R.id.action_go_to_artist:
                 NavigationUtil.goToArtist(this, getAlbum().getArtistId());
                 return true;

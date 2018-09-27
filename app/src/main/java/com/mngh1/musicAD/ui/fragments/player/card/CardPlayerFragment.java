@@ -306,6 +306,24 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             case "them5":
                 card_content.setBackgroundResource(R.drawable.bg5);
                 break;
+            case "them6":
+                card_content.setBackgroundResource(R.drawable.bg6);
+                break;
+            case "them8":
+                card_content.setBackgroundResource(R.drawable.bg8);
+                break;
+            case "them7":
+                card_content.setBackgroundResource(R.drawable.bg7);
+                break;
+            case "them9":
+                card_content.setBackgroundResource(R.drawable.bg9);
+                break;
+            case "them10":
+                card_content.setBackgroundResource(R.drawable.bg10);
+                break;
+            case "them11":
+                card_content.setBackgroundResource(R.drawable.bg11);
+                break;
             default:
                 card_content.setBackgroundResource(R.drawable.bg1);
                 break;

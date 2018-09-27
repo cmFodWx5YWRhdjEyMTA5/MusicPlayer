@@ -140,6 +140,25 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             case "them5":
                 theme_library.setBackgroundResource(R.drawable.bg5);
                 break;
+
+            case "them6":
+                theme_library.setBackgroundResource(R.drawable.bg6);
+                break;
+            case "them8":
+                theme_library.setBackgroundResource(R.drawable.bg8);
+                break;
+            case "them7":
+                theme_library.setBackgroundResource(R.drawable.bg7);
+                break;
+            case "them9":
+                theme_library.setBackgroundResource(R.drawable.bg9);
+                break;
+            case "them10":
+                theme_library.setBackgroundResource(R.drawable.bg10);
+                break;
+            case "them11":
+                theme_library.setBackgroundResource(R.drawable.bg11);
+                break;
             default:
                 theme_library.setBackgroundResource(R.drawable.bg1);
                 break;

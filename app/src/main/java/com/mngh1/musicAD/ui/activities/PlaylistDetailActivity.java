@@ -119,6 +119,24 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
             case "them5":
                 theme_playlist.setBackgroundResource(R.drawable.bg5);
                 break;
+            case "them6":
+                theme_playlist.setBackgroundResource(R.drawable.bg6);
+                break;
+            case "them8":
+                theme_playlist.setBackgroundResource(R.drawable.bg8);
+                break;
+            case "them7":
+                theme_playlist.setBackgroundResource(R.drawable.bg7);
+                break;
+            case "them9":
+                theme_playlist.setBackgroundResource(R.drawable.bg9);
+                break;
+            case "them10":
+                theme_playlist.setBackgroundResource(R.drawable.bg10);
+                break;
+            case "them11":
+                theme_playlist.setBackgroundResource(R.drawable.bg11);
+                break;
             default:
                 theme_playlist.setBackgroundResource(R.drawable.bg1);
                 break;
