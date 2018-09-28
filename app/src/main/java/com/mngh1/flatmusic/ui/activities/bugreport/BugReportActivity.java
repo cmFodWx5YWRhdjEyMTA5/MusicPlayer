@@ -96,7 +96,7 @@ public class BugReportActivity extends AbsThemeActivity {
     @BindView(R.id.button_send)
     FloatingActionButton sendFab;
 
-    private static final String ISSUE_TRACKER_LINK = "https://github.com/mngh1/Phonograph";
+    private static final String ISSUE_TRACKER_LINK = "https://github.com/tuanvn91/MusicPlayer";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
