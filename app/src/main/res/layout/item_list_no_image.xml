@@ -7,7 +7,7 @@
     android:foreground="?attr/rectSelector"
     tools:ignore="UnusedAttribute">
 
-    <com.mngh1.musicAD.views.IconImageView
+    <com.mngh1.flatmusic.views.IconImageView
         android:id="@+id/drag_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -56,7 +56,7 @@
                 android:textColor="@color/text_color_white" />
         </LinearLayout>
 
-        <com.mngh1.musicAD.views.IconImageView
+        <com.mngh1.flatmusic.views.IconImageView
             android:id="@+id/menu"
             style="@style/OverFlowButton"
             android:layout_gravity="center_vertical"
