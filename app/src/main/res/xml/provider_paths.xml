@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <cache-path
-        name="my_images"
-        path="." />
-    <external-cache-path
-        name="my_images"
-        path="." />
-    <external-files-path
-        name="my_images"
+    <root-path
+        name="sdcard1"
         path="." />
     <external-path
-        name="my_images"
-        path="." />
-    <files-path
-        name="my_images"
+        name="sdcard"
         path="." />
 </paths>

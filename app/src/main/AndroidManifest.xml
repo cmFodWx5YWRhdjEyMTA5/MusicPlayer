@@ -72,10 +72,12 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
 
+                <data android:scheme="file" />
                 <data android:mimeType="vnd.android.cursor.dir/playlist" />
                 <data android:mimeType="vnd.android.cursor.dir/albums" />
                 <data android:mimeType="vnd.android.cursor.dir/artists" />
             </intent-filter>
+
             <intent-filter>
                 <action android:name="com.cyanogenmod.eleven.AUDIO_PLAYER" />
 

@@ -21,7 +21,6 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -42,7 +41,6 @@ import org.jaudiotagger.tag.FieldKey;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Permission;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -69,13 +67,7 @@ public class MusicUtil {
         try {
 
             File file = new File(song.data);
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
-//                return new Intent()
-//                        .setAction(Intent.ACTION_SEND)
-//                        .putExtra(Intent.EXTRA_STREAM, GenericFileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", file))
-//                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-//                        .setType("audio/*");
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                 intent.setType("audio/*");
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -83,7 +75,6 @@ public class MusicUtil {
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
                 return  intent;
             }
-
             else
                 return new Intent()
                         .setAction(Intent.ACTION_SEND)

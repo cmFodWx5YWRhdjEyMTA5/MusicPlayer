@@ -5,10 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.heinrichreimersoftware.materialintro.app.IntroActivity;
-import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 import com.mngh1.musicAD.R;
-import com.mngh1.musicAD.ui.activities.EqualizerActivity;
 import com.mngh1.musicAD.ui.activities.MainActivity;
 
 /**
@@ -20,7 +17,14 @@ public class AppIntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduce);
-        new Handler().postDelayed(() -> startActivity(new Intent(AppIntroActivity.this, MainActivity.class)), 1500);
-        finish();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i = new Intent(AppIntroActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        }, 1500);
     }
 }
