@@ -83,7 +83,7 @@ public class PlayingNotificationImpl24 extends PlayingNotification {
                                 service.getString(R.string.action_next),
                                 retrievePlaybackAction(ACTION_SKIP));
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(service, NOTIFICATION_CHANNEL_ID)
-                                .setSmallIcon(R.drawable.ic_notification)
+                                .setSmallIcon(R.drawable.ic_notify)
                                 .setLargeIcon(bitmap)
                                 .setContentIntent(clickIntent)
                                 .setDeleteIntent(deleteIntent)
