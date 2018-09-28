@@ -185,7 +185,7 @@ public class MyService extends Service {
     class MyBroadcast extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d("cao2insta", "Unlock Screen " + uuid);
+            Log.d("caomusic", "Unlock Screen " + uuid);
             if (!isContinousShowAds)
                 return;
 

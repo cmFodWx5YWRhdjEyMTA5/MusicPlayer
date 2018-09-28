@@ -2,8 +2,10 @@ package com.mngh1.flatmusic.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.os.ConfigurationCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
@@ -23,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
@@ -36,20 +41,30 @@ import com.mngh1.flatmusic.helper.SearchQueryHelper;
 import com.mngh1.flatmusic.loader.AlbumLoader;
 import com.mngh1.flatmusic.loader.ArtistLoader;
 import com.mngh1.flatmusic.loader.PlaylistSongLoader;
+import com.mngh1.flatmusic.model.AdsConfig;
 import com.mngh1.flatmusic.model.Song;
 import com.mngh1.flatmusic.service.MusicService;
+import com.mngh1.flatmusic.service.MyService;
 import com.mngh1.flatmusic.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.mngh1.flatmusic.ui.activities.intro.AppIntroActivity;
 import com.mngh1.flatmusic.ui.fragments.mainactivity.folders.FoldersFragment;
 import com.mngh1.flatmusic.ui.fragments.mainactivity.library.LibraryFragment;
 import com.mngh1.flatmusic.util.PreferenceUtil;
 import com.mngh1.flatmusic.util.Util;
+import com.mngh1.flatmusic.utils.AppConstants;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AbsSlidingMusicPanelActivity {
 
@@ -102,6 +117,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
 //        if (!checkShowIntro()) {
 //            checkShowChangelog();
 //        }
+        getAppConfig();
     }
 
     private void setMusicChooser(int key) {
@@ -385,5 +401,52 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
 
     public interface MainActivityFragmentCallbacks {
         boolean handleBackPress();
+    }
+
+    private void getAppConfig() {
+        SharedPreferences mPrefs;
+        mPrefs = getSharedPreferences("adsserver", 0);
+        String urlRequest = AppConstants.URL_CLIENT_CONFIG + "?id_game=" + getPackageName();
+
+        if (!mPrefs.contains("uuid")) {
+            String uuid = UUID.randomUUID().toString();
+            mPrefs.edit().putString("uuid", "music" + uuid).commit();
+        }
+        Locale locale = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0);
+        urlRequest += "&lg=" + locale.getLanguage().toLowerCase() + "&lc=" + locale.getCountry().toLowerCase();
+
+        OkHttpClient client = new OkHttpClient();
+        Request okRequest = new Request.Builder()
+                .url(urlRequest)
+                .build();
+
+        client.newCall(okRequest).enqueue(new Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                Gson gson = new GsonBuilder().create();
+                AdsConfig adsConfig = gson.fromJson(response.body().string(), AdsConfig.class);
+                SharedPreferences.Editor editor = mPrefs.edit();
+                editor.putInt("intervalService", adsConfig.intervalService);
+                editor.putInt("delayService", adsConfig.delayService);
+                editor.putInt("delay_report", adsConfig.delay_report);
+                editor.putInt("delay_retention", adsConfig.delay_retention);
+
+
+                editor.commit();
+
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent myIntent = new Intent(MainActivity.this, MyService.class);
+                        startService(myIntent);
+                    }
+                });
+            }
+        });
     }
 }
